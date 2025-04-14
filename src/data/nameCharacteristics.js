@@ -6,9 +6,9 @@ export const turkishNames = {
     origin: "Türkçe",
     gender: "female",
     letterMeanings: {
-      "A": "Liderlik, başlangıç, özgüven, güç",
+      "A1": "Liderlik, başlangıç, özgüven, güç",
       "D": "Sadakat, pratiklik, çalışkanlık",
-      "A": "Liderlik, başlangıç, özgüven, güç"
+      "A2": "Liderlik, başlangıç, özgüven, güç"
     },
     numerology: 6, // 1+4+1 = 6
     numerologyMeaning: "Uyum, denge, sorumluluk ve sevgiyi temsil eder. 6 sayısı taşıyanlar genellikle sevecen, koruyucu ve yardımseverdir."
@@ -32,9 +32,9 @@ export const turkishNames = {
     gender: "female",
     letterMeanings: {
       "B": "Güvenilirlik, sadakat, sevecenlik",
-      "E": "İletişim, özgürlük, değişim",
+      "E1": "İletişim, özgürlük, değişim",
       "R": "Sorumluluk, enerji, liderlik",
-      "E": "İletişim, özgürlük, değişim",
+      "E2": "İletişim, özgürlük, değişim",
       "N": "Hayal gücü, yaratıcılık, sezgi"
     },
     numerology: 3, // 2+5+9+5+5 = 26 = 2+6 = 8
@@ -59,14 +59,81 @@ export const turkishNames = {
     gender: "female",
     letterMeanings: {
       "Z": "Sezgisellik, gizem, derin düşünce",
-      "E": "İletişim, özgürlük, değişim",
+      "E1": "İletişim, özgürlük, değişim",
       "Y": "Özgürlük, hayal gücü, sezgisellik",
       "N": "Hayal gücü, yaratıcılık, sezgi",
-      "E": "İletişim, özgürlük, değişim",
+      "E2": "İletişim, özgürlük, değişim",
       "P": "Bilgelik, maneviyat, idealizm"
     },
     numerology: 8, // 8+5+7+5+5+7 = 37 = 3+7 = 10 = 1+0 = 1
     numerologyMeaning: "Başarı, güç, maddi zenginlik ve otorite anlamlarını taşır. 8 sayısı taşıyanlar genellikle disiplinli, kararlı ve hedef odaklıdır."
+  },
+  "Melis": {
+    meaning: "Arı peteğinin gözlerinden birinde bulunan, zengin besin değeri olan, işçi arıların ürettiği tatlı madde.",
+    origin: "Yunanca",
+    gender: "female",
+    letterMeanings: {
+      "M": "Çalışkanlık, düzen, sevecenlik",
+      "E": "İletişim, özgürlük, değişim",
+      "L": "Sevgi, ifade yeteneği, sezgisellik",
+      "İ": "Hassasiyet, detaycılık, zeka",
+      "S": "Maneviyat, duyarlılık, güçlü irade"
+    },
+    numerology: 4,
+    numerologyMeaning: "Düzen, disiplin ve güvenilirliği temsil eder. 4 sayısı taşıyanlar genellikle pratik, çalışkan ve kararlıdır."
+  },
+  "Defne": {
+    meaning: "Akdeniz bölgesinde yetişen, yaprakları güzel kokulu bir ağaç türü. Yunan mitolojisinde Apollo tarafından kovalanan ve dafne ağacına dönüşen bir su perisi.",
+    origin: "Yunanca",
+    gender: "female",
+    letterMeanings: {
+      "D": "Sadakat, pratiklik, çalışkanlık",
+      "E1": "İletişim, özgürlük, değişim",
+      "F": "Uyumluluk, sadakat, sevecenlik",
+      "N": "Hayal gücü, yaratıcılık, sezgi",
+      "E2": "İletişim, özgürlük, değişim"
+    },
+    numerology: 5,
+    numerologyMeaning: "Değişim, özgürlük, macera ve esnekliği temsil eder. 5 sayısı taşıyanlar genellikle cesur, meraklı ve uyumlu kişilerdir."
+  },
+  "Nil": {
+    meaning: "Mavi, mavimtırak renk. Ayrıca Mısır'daki ünlü nehrin adı.",
+    origin: "Arapça/Farsça",
+    gender: "female",
+    letterMeanings: {
+      "N": "Hayal gücü, yaratıcılık, sezgi",
+      "İ": "Hassasiyet, detaycılık, zeka",
+      "L": "Sevgi, ifade yeteneği, sezgisellik"
+    },
+    numerology: 5,
+    numerologyMeaning: "Değişim, özgürlük, macera ve esnekliği temsil eder. 5 sayısı taşıyanlar genellikle cesur, meraklı ve uyumlu kişilerdir."
+  },
+  "Aylin": {
+    meaning: "Ay halesini andıran, ay ile ilgili, ay gibi güzel ve parlak olan.",
+    origin: "Türkçe",
+    gender: "female",
+    letterMeanings: {
+      "A": "Liderlik, başlangıç, özgüven, güç",
+      "Y": "Özgürlük, hayal gücü, sezgisellik",
+      "L": "Sevgi, ifade yeteneği, sezgisellik",
+      "İ": "Hassasiyet, detaycılık, zeka",
+      "N": "Hayal gücü, yaratıcılık, sezgi"
+    },
+    numerology: 7,
+    numerologyMeaning: "Bilgelik, içe dönüklük ve manevi arayışı temsil eder. 7 sayısı taşıyanlar genellikle düşünceli, analitik ve arayış içindedir."
+  },
+  "Sude": {
+    meaning: "Suya ait, su gibi temiz ve berrak olan.",
+    origin: "Farsça",
+    gender: "female",
+    letterMeanings: {
+      "S": "Maneviyat, duyarlılık, güçlü irade",
+      "U": "Vizyoner, içsel güç, sezgi",
+      "D": "Sadakat, pratiklik, çalışkanlık",
+      "E": "İletişim, özgürlük, değişim"
+    },
+    numerology: 3,
+    numerologyMeaning: "İletişim, yaratıcılık ve ifade özgürlüğünü temsil eder. 3 sayısı taşıyanlar genellikle eğlenceli, sosyal ve sanatsal kişilerdir."
   },
 
   // ERKEK İSİMLERİ - Alfabetik
@@ -89,11 +156,11 @@ export const turkishNames = {
     origin: "Arapça",
     gender: "male",
     letterMeanings: {
-      "M": "Çalışkanlık, düzen, sevecenlik",
-      "E": "İletişim, özgürlük, değişim",
+      "M1": "Çalışkanlık, düzen, sevecenlik",
+      "E1": "İletişim, özgürlük, değişim",
       "H": "Yaratıcılık, ifade gücü, bağımsızlık",
-      "M": "Çalışkanlık, düzen, sevecenlik",
-      "E": "İletişim, özgürlük, değişim",
+      "M2": "Çalışkanlık, düzen, sevecenlik",
+      "E2": "İletişim, özgürlük, değişim",
       "T": "Kararlılık, güç, cesaret"
     },
     numerology: 6, // 4+5+8+4+5+2 = 28 = 2+8 = 10 = 1+0 = 1
@@ -120,9 +187,9 @@ export const turkishNames = {
       "U": "Vizyoner, içsel güç, sezgi",
       "S": "Maneviyat, duyarlılık, güçlü irade",
       "T": "Kararlılık, güç, cesaret",
-      "A": "Liderlik, başlangıç, özgüven, güç",
+      "A1": "Liderlik, başlangıç, özgüven, güç",
       "F": "Uyumluluk, sadakat, sevecenlik",
-      "A": "Liderlik, başlangıç, özgüven, güç"
+      "A2": "Liderlik, başlangıç, özgüven, güç"
     },
     numerology: 7, // 4+3+1+2+1+6+1 = 18 = 1+8 = 9
     numerologyMeaning: "Bilgelik, içe dönüklük ve manevi arayışı temsil eder. 7 sayısı taşıyanlar genellikle düşünceli, analitik ve arayış içindedir."
@@ -133,13 +200,79 @@ export const turkishNames = {
     gender: "male",
     letterMeanings: {
       "K": "Sorumluluk, güvenilirlik, sezgisellik",
-      "E": "İletişim, özgürlük, değişim",
+      "E1": "İletişim, özgürlük, değişim",
       "R": "Sorumluluk, enerji, liderlik",
-      "E": "İletişim, özgürlük, değişim",
+      "E2": "İletişim, özgürlük, değişim",
       "M": "Çalışkanlık, düzen, sevecenlik"
     },
     numerology: 2, // 2+5+9+5+4 = 25 = 2+5 = 7
     numerologyMeaning: "İşbirliği, uyum ve denge anlamlarını taşır. 2 sayısı taşıyanlar genellikle diplomatik, sabırlı ve anlayışlıdır."
+  },
+  "Mert": {
+    meaning: "Yiğit, cesur, güvenilir, sözünün eri.",
+    origin: "Türkçe",
+    gender: "male",
+    letterMeanings: {
+      "M": "Çalışkanlık, düzen, sevecenlik",
+      "E": "İletişim, özgürlük, değişim",
+      "R": "Sorumluluk, enerji, liderlik",
+      "T": "Kararlılık, güç, cesaret"
+    },
+    numerology: 4,
+    numerologyMeaning: "Düzen, disiplin ve güvenilirliği temsil eder. 4 sayısı taşıyanlar genellikle pratik, çalışkan ve kararlıdır."
+  },
+  "Burak": {
+    meaning: "Gece parlayan, ışık saçan. İslam inancında Hz. Muhammed'i Mirac'a çıkaran binek.",
+    origin: "Arapça",
+    gender: "male",
+    letterMeanings: {
+      "B": "Güvenilirlik, sadakat, sevecenlik",
+      "U": "Vizyoner, içsel güç, sezgi",
+      "R": "Sorumluluk, enerji, liderlik",
+      "A": "Liderlik, başlangıç, özgüven, güç",
+      "K": "Sorumluluk, güvenilirlik, sezgisellik"
+    },
+    numerology: 6,
+    numerologyMeaning: "Uyum, denge, sorumluluk ve sevgiyi temsil eder. 6 sayısı taşıyanlar genellikle sevecen, koruyucu ve yardımseverdir."
+  },
+  "Efe": {
+    meaning: "Batı Anadolu'da zeybek reisi, yiğit ve önder kimse.",
+    origin: "Türkçe",
+    gender: "male",
+    letterMeanings: {
+      "E1": "İletişim, özgürlük, değişim",
+      "F": "Uyumluluk, sadakat, sevecenlik",
+      "E2": "İletişim, özgürlük, değişim"
+    },
+    numerology: 7,
+    numerologyMeaning: "Bilgelik, içe dönüklük ve manevi arayışı temsil eder. 7 sayısı taşıyanlar genellikle düşünceli, analitik ve arayış içindedir."
+  },
+  "Kaan": {
+    meaning: "Hükümdar, han, hakan, başkan.",
+    origin: "Türkçe",
+    gender: "male",
+    letterMeanings: {
+      "K": "Sorumluluk, güvenilirlik, sezgisellik",
+      "A1": "Liderlik, başlangıç, özgüven, güç",
+      "A2": "Liderlik, başlangıç, özgüven, güç",
+      "N": "Hayal gücü, yaratıcılık, sezgi"
+    },
+    numerology: 8,
+    numerologyMeaning: "Başarı, güç, maddi zenginlik ve otorite anlamlarını taşır. 8 sayısı taşıyanlar genellikle disiplinli, kararlı ve hedef odaklıdır."
+  },
+  "Yiğit": {
+    meaning: "Güçlü, yürekli, delikanlı, kahraman, cesur kimse.",
+    origin: "Türkçe",
+    gender: "male",
+    letterMeanings: {
+      "Y": "Özgürlük, hayal gücü, sezgisellik",
+      "İ1": "Hassasiyet, detaycılık, zeka",
+      "Ğ": "Sabır, dayanıklılık, kararlılık",
+      "İ2": "Hassasiyet, detaycılık, zeka",
+      "T": "Kararlılık, güç, cesaret"
+    },
+    numerology: 3,
+    numerologyMeaning: "İletişim, yaratıcılık ve ifade özgürlüğünü temsil eder. 3 sayısı taşıyanlar genellikle eğlenceli, sosyal ve sanatsal kişilerdir."
   }
   // Daha fazla isim burada eklenebilir...
 };
@@ -272,6 +405,17 @@ export const getNameInfo = (name) => {
   const letterAnalysis = {};
   const letters = normalizedName.split('');
   
+  // Küçük harfe çevirme ve normalize etme - Türkçe karakter dönüşümü
+  const lowerName = name.toLowerCase();
+  const lowerNameNormalized = lowerName
+    .replace(/ı/g, 'i')
+    .replace(/ğ/g, 'g')
+    .replace(/ü/g, 'u')
+    .replace(/ş/g, 's')
+    .replace(/ö/g, 'o')
+    .replace(/ç/g, 'c');
+    
+  let gender = "unknown";
   let numerologySum = 0;
   
   letters.forEach(letter => {
@@ -317,19 +461,148 @@ export const getNameInfo = (name) => {
   const nameFirstLetterAnalysis = analyzeNameByFirstLetter(name);
   const nameDescription = nameFirstLetterAnalysis ? nameFirstLetterAnalysis.characteristics : "";
   
-  // Cinsiyet tahmini basit bir yöntemle
-  const lastLetter = name.slice(-1).toLowerCase();
-  let gender = "unknown";
-  if (['a', 'e', 'i', 'ı'].includes(lastLetter)) {
-    gender = "female";
-  } else if (['n', 'r', 't', 'm', 'k'].includes(lastLetter)) {
+  // İsim kökeni tahmini geliştirmesi
+  let origin = "Bilinmiyor";
+  
+  // Kadın isimleri için genişletilmiş liste
+  const femaleNames = [
+    'ayşe', 'fatma', 'zeynep', 'emine', 'hatice', 'elif', 'meryem', 'zehra', 'özlem', 'esra', 
+    'ebru', 'aysel', 'sevgi', 'filiz', 'şeyma', 'melek', 'derya', 'tuğba', 'gülşen', 'şerife',
+    'eda', 'ece', 'ceren', 'selin', 'gamze', 'pınar', 'kübra', 'büşra', 'merve', 'esma',
+    'şule', 'buse', 'gül', 'serap', 'yasemin', 'gizem', 'fulya', 'işıl', 'nur', 'azra',
+    'ada', 'aslı', 'aylin', 'asya', 'berna', 'betül', 'cansu', 'ceyda', 'defne', 'dila',
+    'elçin', 'eylül', 'feride', 'gaye', 'hale', 'hazal', 'irem', 'ilayda', 'jale', 'lale',
+    'melis', 'melisa', 'naz', 'nihan', 'nehir', 'nil', 'sıla', 'selma', 'şeyda', 'tuba',
+    'yeliz', 'yağmur', 'zümra', 'bahar', 'cemre', 'damla', 'demet', 'dilara', 'elifnur',
+    'gülsüm', 'gönül', 'hayriye', 'hilal', 'irmak', 'leyla', 'meltem', 'meral', 'müge', 'neslihan',
+    'nuray', 'pelin', 'rabia', 'rüya', 'seda', 'selda', 'selvi', 'semra', 'sinem', 'songül',
+    'sultan', 'şebnem', 'şengül', 'şükriye', 'tülay', 'ümran', 'yaren', 'yıldız', 'zeliha', 'zühal',
+    'nursel', 'aysel', 'nurhan', 'gülhan', 'ayhan', 'seher', 'simge', 'gözde', 'begüm', 'gonca',
+    'nazlı', 'aysun', 'nurgül', 'sevgi', 'sevil', 'sevim', 'sevda', 'şirin', 'mine', 'melike',
+    'nesrin', 'binnur', 'gülnur', 'aynur', 'ayfer', 'nurten', 'nuriye', 'neşe', 'şenay', 'ayşegül',
+    'emel', 'şule', 'nurcan', 'aycan', 'nurgül', 'gülben', 'burcu', 'selcen', 'nurdan', 'zülal'
+  ];
+  
+  // Erkek isimleri için genişletilmiş liste
+  const maleNames = [
+    'ahmet', 'mehmet', 'mustafa', 'ali', 'hüseyin', 'hasan', 'ibrahim', 'ömer', 'yusuf', 'ismail',
+    'kemal', 'osman', 'murat', 'serkan', 'emre', 'burak', 'adem', 'yasin', 'erkan', 'cem',
+    'can', 'tolga', 'berk', 'alp', 'koray', 'selim', 'tarık', 'kaan', 'arda', 'onur',
+    'eren', 'mert', 'selçuk', 'taner', 'egemen', 'bora', 'kerem', 'umut', 'barış', 'cenk',
+    'alper', 'berkay', 'cihan', 'doğan', 'emir', 'ferhat', 'gökhan', 'harun', 'ilker', 'kaya',
+    'levent', 'metin', 'necati', 'oğuz', 'özgür', 'polat', 'rıza', 'suat', 'taha', 'ufuk',
+    'volkan', 'yavuz', 'zafer', 'bilal', 'caner', 'davut', 'efe', 'furkan', 'göktuğ', 'hamza',
+    'ilhan', 'kadir', 'mahmut', 'nihat', 'orhan', 'öner', 'recep', 'sami', 'talha', 'yakup',
+    'baran', 'batuhan', 'bayram', 'berke', 'burhan', 'coşkun', 'çağatay', 'doğukan', 'ercan', 'erdem',
+    'erdinç', 'erhan', 'ersin', 'eyüp', 'faruk', 'fatih', 'fehmi', 'ferit', 'fikret', 'galip',
+    'gürkan', 'hakan', 'halil', 'hamdi', 'hikmet', 'hüsnü', 'isa', 'kaan', 'kamil', 'kenan'
+  ];
+  
+  // Her iki cinsiyet için ortak isimler
+  const unisexNames = [
+    'deniz', 'özgür', 'bilge', 'evren', 'armağan', 'aydın', 'doğa', 'esen', 'yudum', 'umut', 
+    'mutlu', 'derya', 'yağmur', 'berkay', 'çağla', 'eren', 'ilkay', 'yankı', 'barış', 'övgü',
+    'ege', 'meriç', 'sezgin', 'tunç', 'tuna', 'toprak', 'güneş', 'selen', 'akın', 'dinç',
+    'ekin', 'kıvanç', 'rüzgar', 'bulut', 'göktürk', 'aras', 'berk', 'derin', 'çağrı', 'çağ',
+    'alaz', 'azra', 'cansel', 'dağhan', 'devrim', 'dicle', 'dünya', 'erva', 'firat', 'gökçe',
+    'hayal', 'ilgi', 'inci', 'kanat', 'kutlu', 'müjde', 'nehir', 'okyanus', 'özge', 'pınar'
+  ];
+
+  // Birleşik isimleri kontrol eden fonksiyon - Nur + Sel gibi
+  const checkCompoundName = (name) => {
+    // Tipik birleştirme noktaları, birleşik isimleri bölerek kontrol etmek için
+    const possibleSplitPoints = [2, 3, 4]; // En yaygın uzunluklar: nu+ray, nur+ay, nurs+el
+
+    for (const splitPoint of possibleSplitPoints) {
+      if (name.length <= splitPoint) continue;
+
+      const firstPart = name.substring(0, splitPoint);
+      const secondPart = name.substring(splitPoint);
+
+      // İlk parça kadın ismi veya ismin parçası ise
+      const isFirstPartFemale = femaleNames.includes(firstPart) || 
+                               ['nur', 'gül', 'ay', 'sel', 'sev', 'han', 'can'].includes(firstPart);
+      
+      // İkinci parça kadın ismi veya ismin parçası ise
+      const isSecondPartFemale = femaleNames.includes(secondPart) || 
+                                ['nur', 'gül', 'ay', 'sel', 'han', 'can', 'naz', 'su'].includes(secondPart);
+
+      if (isFirstPartFemale && isSecondPartFemale) return "female";
+
+      // İlk parça erkek ismi veya ismin parçası ise
+      const isFirstPartMale = maleNames.includes(firstPart) || 
+                             ['ali', 'can', 'han', 'efe', 'bey'].includes(firstPart);
+      
+      // İkinci parça erkek ismi veya ismin parçası ise
+      const isSecondPartMale = maleNames.includes(secondPart) || 
+                              ['can', 'han', 'alp', 'bey', 'men', 'er'].includes(secondPart);
+
+      if (isFirstPartMale && isSecondPartMale) return "male";
+    }
+
+    return null; // Belirlenemedi
+  };
+  
+  // Özel durum: 'nur' ile başlayan isimler genellikle kadın isimleridir, özellikle Nursel gibi birleşik isimler
+  if (lowerName.startsWith('nur') || lowerName.startsWith('gul') || lowerName.startsWith('gül')) {
     gender = "female";
   }
-  
-  // İsim kökeni tahmini
-  let origin = "Türkçe";
-  if (name.includes('j') || name.includes('w') || name.includes('x')) {
-    origin = "Yabancı";
+  // Tam isim eşleşmesi kontrolü
+  else if (femaleNames.includes(lowerNameNormalized)) {
+    gender = "female";
+  } 
+  else if (maleNames.includes(lowerNameNormalized)) {
+    gender = "male";
+  } 
+  else if (unisexNames.includes(lowerNameNormalized)) {
+    gender = "unisex";
+  } 
+  else {
+    // Birleşik isim kontrolü
+    const compoundGender = checkCompoundName(lowerNameNormalized);
+    if (compoundGender) {
+      gender = compoundGender;
+    }
+    // Eğer birleşik isim değilse, soneklere bakılır
+    else {
+      // Kadın isimleri için tipik sonekler
+      if (lowerName.endsWith('nur') || lowerName.endsWith('gül') || 
+          lowerName.endsWith('ay') || lowerName.endsWith('naz') || 
+          lowerName.endsWith('su') || lowerName.endsWith('nisa') || 
+          lowerName.endsWith('ide') || lowerName.endsWith('iye') ||
+          lowerName.endsWith('ım') || lowerName.endsWith('ıl') ||
+          lowerName.endsWith('la') || lowerName.endsWith('na') ||
+          lowerName.endsWith('sel') || lowerName.endsWith('fer') ||
+          lowerName.endsWith('nar') || lowerName.endsWith('han') ||
+          lowerName.endsWith('şah') || lowerName.endsWith('gün')) {
+        gender = "female";
+      }
+      // Erkek isimleri için tipik sonekler
+      else if (lowerName.endsWith('can') || lowerName.endsWith('han') || 
+               lowerName.endsWith('alp') || lowerName.endsWith('ğlu') || 
+               lowerName.endsWith('men') || lowerName.endsWith('an') || 
+               lowerName.endsWith('at') || lowerName.endsWith('ker') ||
+               lowerName.endsWith('ut') || lowerName.endsWith('er') ||
+               lowerName.endsWith('kut') || lowerName.endsWith('bay')) {
+        gender = "male";
+      }
+      // Son harfe göre tahmini yöntem
+      else {
+        const lastLetter = lowerName.slice(-1);
+        // Tipik kadın ismi son harfleri
+        if (['a', 'e', 'l', 'r', 'h', 'y'].includes(lastLetter)) {
+          gender = "female"; 
+        } 
+        // Tipik erkek ismi son harfleri
+        else if (['n', 't', 'k', 'm', 'f', 'ç', 'ş'].includes(lastLetter)) {
+          gender = "male"; 
+        }
+        // Belirsiz durumlarda ortak cinsiyeti tercih et
+        else {
+          gender = "unisex";
+        }
+      }
+    }
   }
   
   return {

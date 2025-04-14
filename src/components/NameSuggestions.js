@@ -175,6 +175,7 @@ const NameAnalysisBoxes = ({ name, language }) => {
       unknownMeaning: "Bu isim için kayıtlı bir anlam bulunamadı.",
       male: "Erkek",
       female: "Kadın",
+      unisex: "Ortak Cinsiyet",
       genderTitle: "Cinsiyet",
       unknown: "Belirsiz",
       letterTitle: "Harf",
@@ -193,6 +194,7 @@ const NameAnalysisBoxes = ({ name, language }) => {
       unknownMeaning: "No recorded meaning found for this name.",
       male: "Male",
       female: "Female",
+      unisex: "Unisex",
       genderTitle: "Gender",
       unknown: "Unknown",
       letterTitle: "Letter",
@@ -239,6 +241,20 @@ const NameAnalysisBoxes = ({ name, language }) => {
     );
   };
 
+  // İsim kökenleri için görüntüleme
+  const renderOrigin = (origin) => {
+    if (origin === "Bilinmiyor" || origin === "Unknown") {
+      return (
+        <div className="text-gold-light/80 italic">
+          {language === 'en' 
+            ? "This name may be used in multiple cultures or may not have a specific origin."
+            : "Bu isim birden fazla kültürde kullanılıyor olabilir veya belirgin bir kökeni olmayabilir."}
+        </div>
+      );
+    }
+    return <div className="text-gold-default">{origin}</div>;
+  };
+
   return (
     <div className="mt-8">
       <h3 className="text-2xl font-cinzel text-gold-default text-center mb-6">
@@ -274,9 +290,7 @@ const NameAnalysisBoxes = ({ name, language }) => {
                   </div>
                   <h5 className="text-lg font-cinzel text-gold-light/90 truncate">{t.originTitle}</h5>
                 </div>
-                <p className="text-gold-light/80 font-cormorant text-lg break-words">
-                  {nameInfo.origin || t.unknownOrigin}
-                </p>
+                {renderOrigin(nameInfo.origin)}
               </div>
               
               {/* Cinsiyet bilgisi */}
@@ -291,6 +305,11 @@ const NameAnalysisBoxes = ({ name, language }) => {
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
                       </svg>
+                    ) : nameInfo.gender === 'unisex' ? (
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-3.707-8.707a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L10 10.586l-1.293-1.293z" clipRule="evenodd" />
+                        <path fillRule="evenodd" d="M10 6a1 1 0 011 1v4a1 1 0 11-2 0V7a1 1 0 011-1z" clipRule="evenodd" />
+                      </svg>
                     ) : (
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
@@ -300,7 +319,7 @@ const NameAnalysisBoxes = ({ name, language }) => {
                   <h5 className="text-lg font-cinzel text-gold-light/90 truncate">{t.genderTitle}</h5>
                 </div>
                 <p className="text-gold-light/80 font-cormorant text-lg">
-                  {nameInfo.gender === 'male' ? t.male : nameInfo.gender === 'female' ? t.female : t.unknown}
+                  {nameInfo.gender === 'male' ? t.male : nameInfo.gender === 'female' ? t.female : nameInfo.gender === 'unisex' ? (language === 'tr' ? 'Ortak Cinsiyet' : 'Unisex') : t.unknown}
                 </p>
               </div>
             </div>
@@ -394,4 +413,7 @@ const NameAnalysisBoxes = ({ name, language }) => {
   );
 };
 
-export default NameAnalysisBoxes; 
+export default NameAnalysisBoxes;
+
+// Test ismi ekle
+export const debugTestName = "Nursel" // Bu isim cinsiyeti dişi olarak tespit edilecek

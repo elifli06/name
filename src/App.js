@@ -12,6 +12,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [result, setResult] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
+  const [exitAnimation, setExitAnimation] = useState(false);
 
   const translations = {
     tr: {
@@ -24,7 +25,10 @@ function App() {
       characteristics: 'Karakter Özellikleri',
       energy: 'Enerji Seviyesi',
       compatibility: 'Uyumluluk',
-      suggestions: 'İsim Önerileri'
+      suggestions: 'İsim Önerileri',
+      exit: 'Çıkış',
+      exitMessage: 'Uygulama kapatılıyor...',
+      goodbye: 'kendine iyi bak. Herşey gönlünce olsun, sen değerlisin. Hoşçakal!'
     },
     en: {
       title: 'Nomen Est Omen',
@@ -36,7 +40,10 @@ function App() {
       characteristics: 'Character Traits',
       energy: 'Energy Level',
       compatibility: 'Compatibility',
-      suggestions: 'Name Suggestions'
+      suggestions: 'Name Suggestions',
+      exit: 'Exit',
+      exitMessage: 'Closing the application...',
+      goodbye: 'take care of yourself. May everything go well for you, you are valuable. Goodbye!'
     }
   };
 
@@ -47,6 +54,22 @@ function App() {
     
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (exitAnimation) {
+      const timer = setTimeout(() => {
+        window.close();
+        // Eğer window.close() tarayıcı tarafından engellendiyse, kullanıcıya bir mesaj göster
+        setTimeout(() => {
+          setExitAnimation(false);
+          alert(language === 'tr' ? 'Tarayıcınız otomatik kapatmaya izin vermiyor. Pencereyi manuel olarak kapatabilirsiniz.' : 
+                                   'Your browser does not allow automatic closing. You can close the window manually.');
+        }, 3000);
+      }, 5500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [exitAnimation, language]);
 
   const handleSearch = () => {
     if (!searchTerm.trim() || analyzing) return;
@@ -114,6 +137,10 @@ function App() {
     }, 5000);
   };
 
+  const handleExit = () => {
+    setExitAnimation(true);
+  };
+
   const handleShare = async () => {
     const shareText = language === 'tr' 
       ? `${result.name} isminin analizi:\n${result.characteristics.description}\n\nUyumlu Harfler: ${result.characteristics.traits.join(', ')}`
@@ -144,9 +171,89 @@ function App() {
         {showIntro && <IntroAnimation />}
       </AnimatePresence>
 
+      {/* Çıkış animasyonu */}
+      <AnimatePresence>
+        {exitAnimation && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-midnight/80 backdrop-blur-md"
+          >
+            <motion.div 
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 0, y: -1000, rotate: [0, 10, -15, 5, -10, 15, -5, 10, 0] }}
+              transition={{ 
+                duration: 5,
+                ease: "easeInOut",
+                times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1]
+              }}
+              className="relative"
+            >
+              <svg 
+                viewBox="0 0 100 100" 
+                className="w-40 h-40 text-gold-default/90 drop-shadow-[0_0_15px_rgba(255,184,0,0.5)]"
+              >
+                <path 
+                  d="M50,3c0,0,37,35,44,58c0,0-14-24-44-22c0,0,33,6,44,36c0,0-9-18-36-15c0,0,22,5,31,37c0,0-32-40-85-37
+                  c0,0,57-3,63,22c0,0-15-20-42-13c0,0,35-8,37,22c0,0-21-31-36-29c0,0,17,0,24,12" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2"
+                  strokeLinecap="round" 
+                />
+              </svg>
+            </motion.div>
+            <motion.p 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute text-2xl font-cinzel text-gold-default"
+            >
+              {language === 'tr' ? 'Uygulama kapatılıyor...' : 'Closing the application...'}
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="absolute inset-0 bg-[url('./assets/stars.png')] opacity-20"></div>
       
-      <div className="container mx-auto px-4 py-8 relative z-10">
+      <div className="container mx-auto px-4 py-8 pb-16 relative z-10">
+        {/* Çıkış butonu - sağ üst köşede */}
+        <motion.button
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5 }}
+          onClick={handleExit}
+          className="fixed top-4 right-4 bg-midnight-light/30 hover:bg-midnight-light/50 text-gold-light p-2 rounded-full transition-all duration-300 border border-gold-default/30 hover:border-gold-default/60 group z-50"
+          title={language === 'tr' ? 'Çıkış Yap' : 'Exit'}
+        >
+          <div className="relative">
+            <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-gold-default">
+              <path 
+                d="M12,4c0,0,7,6,8,10c0,0-4-5-9-3c0,0,6,1,7,7c0,0-5-8-16-6c0,0,11-1,11,5c0,0-4-6-10-2" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeLinecap="round"
+              />
+            </svg>
+            <motion.span 
+              className="absolute -bottom-1 -right-1 text-[8px] text-gold-light"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.4, 1, 0.4]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              ✦
+            </motion.span>
+          </div>
+          <span className="sr-only">{translations[language].exit}</span>
+        </motion.button>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -277,7 +384,7 @@ function App() {
             >
               🕯️
             </motion.span>
-            {language === 'tr' ? 'İsminizin sırrını keşfedin' : 'Discover the secret of your name'}
+            {translations[language].subtitle}
             <motion.span 
               initial={{ opacity: 0.8 }}
               animate={{ 
@@ -316,7 +423,7 @@ function App() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                placeholder={language === 'tr' ? 'İsminizi girin...' : 'Enter your name...'}
+                placeholder={translations[language].searchPlaceholder}
                 className="flex-1 bg-midnight-light/20 border border-gold/20 rounded-lg px-4 py-2 text-gold-light focus:outline-none focus:border-gold/40"
               />
               <button
@@ -324,7 +431,7 @@ function App() {
                 disabled={analyzing}
                 className={`bg-gold/20 hover:bg-gold/30 text-gold-light px-6 py-2 rounded-lg transition-all duration-300 ${analyzing ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                {language === 'tr' ? 'Analiz Et' : 'Analyze'}
+                {translations[language].analyze}
               </button>
               <button
                 onClick={toggleLanguage}
@@ -450,7 +557,7 @@ function App() {
                       </p>
                       <div className="mt-6">
                         <h3 className="text-xl font-cinzel text-gold-default mb-2">
-                          {language === 'tr' ? 'Uyumlu Harfler' : 'Compatible Letters'}
+                          {translations[language].compatibility}
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {result.characteristics.traits.map(letter => (
@@ -517,9 +624,7 @@ function App() {
                               ease: "easeInOut"
                             }}
                           >
-                            {language === 'tr' 
-                              ? `${searchTerm}, kendine iyi bak. Herşey gönlünce olsun, sen değerlisin. Hoşçakal!` 
-                              : `${searchTerm}, take care of yourself. May everything be as you wish, you are valuable. Goodbye!`}
+                            {searchTerm}, {translations[language].goodbye}
                           </motion.p>
                           
                           <div className="flex items-center justify-center mt-2">
@@ -543,6 +648,24 @@ function App() {
           </motion.div>
         </div>
       </div>
+      
+      {/* Footer - Telif Hakkı Bilgisi */}
+      <motion.footer 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="fixed bottom-0 left-0 right-0 text-center py-3 bg-midnight-default/80 backdrop-blur-md border-t border-gold-default/20 z-30"
+      >
+        <div className="container mx-auto px-4">
+          <p className="text-gold-light/70 text-sm font-cinzel flex items-center justify-center gap-2">
+            <span className="text-gold-default text-xs">✧</span>
+            {language === 'tr' 
+              ? 'Created by Elif Cerav © 2025. Tüm hakları saklıdır.' 
+              : 'Created by Elif Cerav © 2025. All rights reserved.'}
+            <span className="text-gold-default text-xs">✧</span>
+          </p>
+        </div>
+      </motion.footer>
     </div>
   );
 }
