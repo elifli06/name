@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0A0B1A" />
+    <meta name="description" content="Nomen Est Omen - İsim Analizi Uygulaması" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Nomen Est Omen" />
+    <meta name="application-name" content="Nomen Est Omen" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <title>Nomen Est Omen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <noscript>Bu uygulamayı çalıştırmak için JavaScript'i etkinleştirmeniz gerekmektedir.</noscript>
+    <audio id="backgroundMusic" loop>
+      <source src="%PUBLIC_URL%/assets/mystical-background.mp3.mp3" type="audio/mp3">
+    </audio>
+    <div id="root"></div>
+    <script>
+      document.body.addEventListener('click', function() {
+        const audio = document.getElementById('backgroundMusic');
+        if (audio) {
+          audio.volume = 0.2;
+          audio.play().catch(e => console.log('Müzik başlatma hatası:', e));
+        }
+      }, { once: true });
+    </script>
+  </body>
+</html> 

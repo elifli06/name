@@ -1,0 +1,51 @@
+.bg-gradient-radial {
+  background: radial-gradient(circle at center, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 10px rgba(255, 184, 0, 0.5),
+               0 0 20px rgba(255, 184, 0, 0.3),
+               0 0 30px rgba(255, 184, 0, 0.2);
+}
+
+.bg-stars {
+  background-image: url('./assets/stars.png');
+  background-repeat: repeat;
+  background-size: 200px;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.hover-glow:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 15px rgba(255, 184, 0, 0.3);
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+} 
