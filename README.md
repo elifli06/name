@@ -53,7 +53,7 @@ Artık projenizi GitHub'a yükleyebilir ve LinkedIn'de paylaşabilirsiniz!
 
 ## Lisans
 
-MIT
+© 2024 Elif Cerav. Tüm hakları saklıdır.
 
 ---
 

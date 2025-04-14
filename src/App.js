@@ -547,4 +547,6 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
+
+// Created by Elif Cerav 2024. Tüm hakları saklıdır. 
