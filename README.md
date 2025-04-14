@@ -6,12 +6,12 @@ Nomen Est Omen, isim analizleri yapabilen, şık görünümlü ve etkileşimli b
 
 ## Özellikler
 
-- İsim analizleri ve karakteristik özellikleri
-- Numeroloji hesaplamaları
-- Her harf için detaylı analiz
+- İsim analizleri ve karakteristik özelliklerini keşfedin
+- Numeroloji hesaplamaları ve yorumları
+- Her harf için detaylı analiz ve açıklamalar
 - Uyumlu harfler önerisi
 - Türkçe ve İngilizce dil desteği
-- Etkileyici animasyonlar ve görseller
+- Etkileyici animasyonlar ve görsel efektler
 - PWA desteği (mobil cihazlarda yüklenebilir)
 
 ## Teknolojiler
