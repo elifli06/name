@@ -1,0 +1,12 @@
+# Özel veri dosyaları
+
+Bu klasör özel konfigürasyon ve veri dosyalarını içerir.
+Bu dosyalar güvenlik sebeplerinden dolayı .gitignore ile repo dışında tutulmuştur.
+
+## Gerekli dosyalar:
+
+1. nameData.js - İsim veritabanı
+2. apiKeys.js - API anahtarları
+3. analytics.js - Analitik fonksiyonlar
+
+Not: Bu dosyalar özeldir ve paylaşılmamalıdır. 
