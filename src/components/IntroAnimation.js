@@ -4,24 +4,48 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const symbols = ['Σ', 'π', '∞', '∆', 'Ω', '√'];
 
-function IntroAnimation() {
+function IntroAnimation({ searchTerm }) {
   const [showSymbols, setShowSymbols] = useState(true);
   const audioRef = useRef(null);
   const [audioStarted, setAudioStarted] = useState(false);
 
   useEffect(() => {
+    // Bileşen monte edildiğinde ses dosyasını yükle
     const timer = setTimeout(() => {
       setShowSymbols(false);
     }, 6000);
 
-    return () => clearTimeout(timer);
+    // Bileşen DOM'dan kaldırılınca temizlik işlemleri
+    return () => {
+      clearTimeout(timer);
+      // Ses durdurma
+      const audio = audioRef.current;
+      if (audio) {
+        audio.pause();
+        audio.src = "";
+      }
+    };
   }, []);
 
   const handleClick = () => {
     if (audioRef.current && !audioStarted) {
-      audioRef.current.volume = 0.2;
-      audioRef.current.play();
-      setAudioStarted(true);
+      try {
+        audioRef.current.volume = 0.2;
+        // Ses başlatmadan önce kontrolü yap
+        const playPromise = audioRef.current.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            // Ses başarıyla başlatıldı
+            setAudioStarted(true);
+          }).catch(error => {
+            // Ses başlatma hatası
+            console.error("Ses başlatma hatası:", error);
+          });
+        }
+      } catch (error) {
+        console.error("Ses ile ilgili bir hata oluştu:", error);
+      }
     }
   };
 
@@ -36,8 +60,10 @@ function IntroAnimation() {
           onClick={handleClick}
         >
           {/* Gizli ses elementi */}
-          <audio ref={audioRef} loop>
+          <audio ref={audioRef} preload="auto">
             <source src="/assets/mystical-background.mp3.mp3" type="audio/mp3" />
+            {/* Yedek ses kaynağı */}
+            <source src="./assets/mystical-background.mp3.mp3" type="audio/mp3" />
           </audio>
 
           <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
@@ -71,7 +97,7 @@ function IntroAnimation() {
 
             {/* Üç bölümlü içerik */}
             <div className="flex w-full h-full justify-center items-center px-4 md:px-12">
-              {/* Sol taraftaki melek görseli */}
+              {/* Golden Angel görseli (sol taraf) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -79,8 +105,8 @@ function IntroAnimation() {
                 className="w-1/3 flex justify-center items-center"
               >
                 <img
-                  src="/golden-angel.jpg.png"
-                  alt="Melek"
+                  src="/golden-angel.jpg"
+                  alt="Golden Angel"
                   className="max-h-[70vh] max-w-full object-contain rounded-lg shadow-lg shadow-gold-default/20"
                 />
               </motion.div>
@@ -132,7 +158,7 @@ function IntroAnimation() {
                   </div>
                 </motion.div>
 
-                {/* Merkez sembol */}
+                {/* Merkez sembol - Sadece sonsuzluk sembolü */}
                 <motion.div
                   initial={{ scale: 0, rotate: 0, opacity: 0 }}
                   animate={{ scale: 1, rotate: 360, opacity: 1 }}
@@ -140,6 +166,16 @@ function IntroAnimation() {
                   className="absolute"
                 >
                   <span className="text-6xl font-cinzel text-gold-default">∞</span>
+                </motion.div>
+                
+                {/* Lütfen bekleyiniz yazısı */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.8, duration: 1 }}
+                  className="absolute mt-24 text-center"
+                >
+                  <span className="text-xl font-cinzel text-gold-light bg-midnight-default/60 px-4 py-2 rounded-lg">Lütfen bekleyiniz...</span>
                 </motion.div>
 
                 {/* Dönen semboller */}
@@ -166,7 +202,7 @@ function IntroAnimation() {
                 ))}
               </motion.div>
 
-              {/* Sağ taraftaki melek görseli (aynı resim) */}
+              {/* Golden Angel görseli (sağ taraf) */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -174,8 +210,8 @@ function IntroAnimation() {
                 className="w-1/3 flex justify-center items-center"
               >
                 <img
-                  src="/golden-angel.jpg.png"
-                  alt="Melek"
+                  src="/golden-angel.jpg"
+                  alt="Golden Angel"
                   className="max-h-[70vh] max-w-full object-contain rounded-lg shadow-lg shadow-gold-default/20"
                 />
               </motion.div>

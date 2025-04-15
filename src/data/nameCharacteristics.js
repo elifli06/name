@@ -394,16 +394,8 @@ export const analyzeNameByFirstLetter = (name) => {
 
 // İsim bilgisi getirme fonksiyonu - Tüm isim analizi 
 export const getNameInfo = (name) => {
+  // Temiz bir şekilde normalize edilmiş isim oluşturma
   const normalizedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-  
-  // Eğer isim veritabanında varsa detaylı bilgileri döndür
-  if (turkishNames[normalizedName]) {
-    return turkishNames[normalizedName];
-  }
-  
-  // Veritabanında yoksa harflere göre analiz oluştur
-  const letterAnalysis = {};
-  const letters = normalizedName.split('');
   
   // Küçük harfe çevirme ve normalize etme - Türkçe karakter dönüşümü
   const lowerName = name.toLowerCase();
@@ -414,6 +406,15 @@ export const getNameInfo = (name) => {
     .replace(/ş/g, 's')
     .replace(/ö/g, 'o')
     .replace(/ç/g, 'c');
+  
+  // Eğer isim veritabanında varsa detaylı bilgileri döndür
+  if (turkishNames[normalizedName]) {
+    return turkishNames[normalizedName];
+  }
+  
+  // Veritabanında yoksa harflere göre analiz oluştur
+  const letterAnalysis = {};
+  const letters = normalizedName.split('');
     
   let gender = "unknown";
   let numerologySum = 0;
@@ -480,7 +481,13 @@ export const getNameInfo = (name) => {
     'nursel', 'aysel', 'nurhan', 'gülhan', 'ayhan', 'seher', 'simge', 'gözde', 'begüm', 'gonca',
     'nazlı', 'aysun', 'nurgül', 'sevgi', 'sevil', 'sevim', 'sevda', 'şirin', 'mine', 'melike',
     'nesrin', 'binnur', 'gülnur', 'aynur', 'ayfer', 'nurten', 'nuriye', 'neşe', 'şenay', 'ayşegül',
-    'emel', 'şule', 'nurcan', 'aycan', 'nurgül', 'gülben', 'burcu', 'selcen', 'nurdan', 'zülal'
+    'emel', 'şule', 'nurcan', 'aycan', 'nurgül', 'gülben', 'burcu', 'selcen', 'nurdan', 'zülal',
+    // Yeni eklenen kadın isimleri
+    'duygu', 'hülya', 'ipek', 'kiraz', 'lina', 'mina', 'nefise', 'oya', 'öykü', 'perihan', 
+    'rüveyda', 'sıla', 'tülin', 'ülkü', 'vildan', 'yasemin', 'zahide', 'almina', 'beril', 'cazibe',
+    'didem', 'elifsu', 'funda', 'gökçen', 'halenur', 'idil', 'jülide', 'kumru', 'lara', 'mira',
+    'nihan', 'oyku', 'peri', 'rüya', 'serenay', 'tuana', 'ürün', 'vuslat', 'yasemen', 'zeren',
+    'açelya', 'bengisu', 'ceylin', 'dilara', 'eslem', 'firdevs', 'gökçe', 'hanzade', 'ilkim', 'kumsal'
   ];
   
   // Erkek isimleri için genişletilmiş liste
@@ -495,7 +502,15 @@ export const getNameInfo = (name) => {
     'ilhan', 'kadir', 'mahmut', 'nihat', 'orhan', 'öner', 'recep', 'sami', 'talha', 'yakup',
     'baran', 'batuhan', 'bayram', 'berke', 'burhan', 'coşkun', 'çağatay', 'doğukan', 'ercan', 'erdem',
     'erdinç', 'erhan', 'ersin', 'eyüp', 'faruk', 'fatih', 'fehmi', 'ferit', 'fikret', 'galip',
-    'gürkan', 'hakan', 'halil', 'hamdi', 'hikmet', 'hüsnü', 'isa', 'kaan', 'kamil', 'kenan'
+    'gürkan', 'hakan', 'halil', 'hamdi', 'hikmet', 'hüsnü', 'isa', 'kaan', 'kamil', 'kenan',
+    'veysel', 'vedat', 'soner', 'mesut', 'eray', 'umut', 'ufuk', 'kaya', 'şenol', 'tarkan',
+    'mevlüt', 'necdet', 'nazım', 'turan', 'şahin', 'yaşar', 'orçun', 'tuğrul', 'güven', 'özcan',
+    // Yeni eklenen erkek isimleri
+    'doruk', 'ege', 'fırat', 'göktürk', 'hazar', 'irmak', 'kuzey', 'ozan', 'poyraz', 'rüzgar',
+    'şahin', 'taylan', 'ulaş', 'yağız', 'ziya', 'alperen', 'barbaros', 'canberk', 'demirhan', 'ertuğrul',
+    'feyyaz', 'gökalp', 'hakan', 'ilkay', 'kağan', 'kutluhan', 'meriç', 'oğuzhan', 'ömercan', 'polathan',
+    'sarp', 'timur', 'ulvi', 'yiğithan', 'zahit', 'aras', 'berkcan', 'çınar', 'doğa', 'efecan',
+    'firat', 'gürkan', 'haydar', 'ilkhan', 'kartal', 'metehan', 'özkan', 'serhat', 'turhan', 'uğurhan'
   ];
   
   // Her iki cinsiyet için ortak isimler
@@ -505,7 +520,11 @@ export const getNameInfo = (name) => {
     'ege', 'meriç', 'sezgin', 'tunç', 'tuna', 'toprak', 'güneş', 'selen', 'akın', 'dinç',
     'ekin', 'kıvanç', 'rüzgar', 'bulut', 'göktürk', 'aras', 'berk', 'derin', 'çağrı', 'çağ',
     'alaz', 'azra', 'cansel', 'dağhan', 'devrim', 'dicle', 'dünya', 'erva', 'firat', 'gökçe',
-    'hayal', 'ilgi', 'inci', 'kanat', 'kutlu', 'müjde', 'nehir', 'okyanus', 'özge', 'pınar'
+    'hayal', 'ilgi', 'inci', 'kanat', 'kutlu', 'müjde', 'nehir', 'okyanus', 'özge', 'pınar',
+    // Yeni eklenen unisex isimler
+    'aral', 'asil', 'atlas', 'bilgin', 'cihan', 'duru', 'erdem', 'figen', 'günay', 'ılgaz',
+    'ışık', 'kaya', 'mutlu', 'nisan', 'onur', 'ömür', 'özen', 'renk', 'sevinç', 'şafak',
+    'tan', 'ufuk', 'ürün', 'vatan', 'yalçın', 'yamaç', 'yalın', 'yüce', 'zeren', 'zümrüt'
   ];
 
   // Birleşik isimleri kontrol eden fonksiyon - Nur + Sel gibi
@@ -531,11 +550,11 @@ export const getNameInfo = (name) => {
 
       // İlk parça erkek ismi veya ismin parçası ise
       const isFirstPartMale = maleNames.includes(firstPart) || 
-                             ['ali', 'can', 'han', 'efe', 'bey'].includes(firstPart);
+                             ['ali', 'can', 'han', 'efe', 'bey', 'vey'].includes(firstPart);
       
       // İkinci parça erkek ismi veya ismin parçası ise
       const isSecondPartMale = maleNames.includes(secondPart) || 
-                              ['can', 'han', 'alp', 'bey', 'men', 'er'].includes(secondPart);
+                              ['can', 'han', 'alp', 'bey', 'men', 'er', 'sel'].includes(secondPart);
 
       if (isFirstPartMale && isSecondPartMale) return "male";
     }
@@ -546,6 +565,10 @@ export const getNameInfo = (name) => {
   // Özel durum: 'nur' ile başlayan isimler genellikle kadın isimleridir, özellikle Nursel gibi birleşik isimler
   if (lowerName.startsWith('nur') || lowerName.startsWith('gul') || lowerName.startsWith('gül')) {
     gender = "female";
+  }
+  // Özel durum: 'vey' ile başlayan isimler genellikle erkek isimleridir (veysel, veysican, veyis)
+  else if (lowerName.startsWith('vey')) {
+    gender = "male";
   }
   // Tam isim eşleşmesi kontrolü
   else if (femaleNames.includes(lowerNameNormalized)) {
@@ -603,6 +626,33 @@ export const getNameInfo = (name) => {
         }
       }
     }
+  }
+  
+  // İsim kökeni tahmini
+  const turkishOriginPatterns = [
+    'can', 'han', 'alp', 'bey', 'ay', 'gül', 'efe', 'kaan', 'han', 'kağan', 
+    'bora', 'demir', 'deniz', 'su', 'toprak', 'kutlu', 'doğa', 'ateş', 'yağmur', 'umut',
+    'kut', 'tekin', 'özgür', 'pınar', 'ışık', 'güneş', 'irmak', 'çiçek', 'dağ', 'yıldız'
+  ];
+
+  const arabicOriginPatterns = [
+    'nur', 'ahmet', 'mehmet', 'mustafa', 'ali', 'fatma', 'ayşe', 'zeynep', 'ibrahim', 'ömer',
+    'hatice', 'adem', 'havva', 'musa', 'isa', 'muhammed', 'emine', 'sultan', 'selim', 'yusuf',
+    'meryem', 'cemil', 'kerim', 'nur', 'rahman', 'rahim', 'leyla', 'hamza', 'zehra', 'fatih'
+  ];
+
+  const persianOriginPatterns = [
+    'gül', 'şah', 'şeh', 'naz', 'afet', 'dilber', 'dilara', 'şirin', 'lale', 'nergis',
+    'bahar', 'gülşen', 'pehlivan', 'şahbaz', 'şahane', 'hürrem', 'cihan', 'peri', 'nigar', 'piran'
+  ];
+
+  // İsim kökenini belirleme
+  if (turkishOriginPatterns.some(pattern => lowerNameNormalized.includes(pattern))) {
+    origin = "Türkçe";
+  } else if (arabicOriginPatterns.some(pattern => lowerNameNormalized.includes(pattern))) {
+    origin = "Arapça";
+  } else if (persianOriginPatterns.some(pattern => lowerNameNormalized.includes(pattern))) {
+    origin = "Farsça";
   }
   
   return {

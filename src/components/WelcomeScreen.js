@@ -42,7 +42,7 @@ export default function WelcomeScreen({ onComplete }) {
               className="relative"
             >
               <img
-                src="/angel.jpg"
+                src="/assets/angel.jpg"
                 alt="Melek"
                 className="w-full h-auto max-h-[70vh] object-contain mx-auto rounded-lg"
               />

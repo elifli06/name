@@ -10,12 +10,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #0A0B1A;
+  color: #FFB800;
   background-image: url('./assets/stars.png');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
-  color: #FFB800;
   overflow-x: hidden;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="%23FFD700" stroke="%23FFD700" stroke-width="0.5"><path d="M8 2c0 1.5.7 2.8 1.7 3.6L11 7l-3.3 1.1c-1 .4-1.7 1.2-1.7 2.2 0 .7.3 1.3.8 1.7l1.3 1.3-1.3 1.3c-.5.4-.8 1-.8 1.7 0 1 .7 1.8 1.7 2.2l3.3 1-1.3 1.3c-1 .8-1.7 2.1-1.7 3.6h2c0-1 .5-1.9 1.2-2.5l2-1.7-2-1.7c-.7-.6-1.2-1.5-1.2-2.5 0-.8.4-1.5 1-1.9l2.5-1.7-2.5-1.7c-.6-.4-1-.8-1-1.9 0-1 .5-1.9 1.2-2.5l2-1.7-2-1.7C8.5 3.9 8 3 8 2zM19.6 4.8l-1.4-1.4-8.4 8.4c-.6.6-.6 1.6 0 2.1.6.6 1.5.6 2.1 0l8.4-8.4-1.4-1.4 5.2-1.7-4.5 4.2z"/></svg>') 1 30, auto;
 }
 
 * {
@@ -63,4 +64,36 @@ code {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 184, 0, 0.5);
+}
+
+/* Melek animasyonu */
+.floating-angel {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  z-index: 10;
+  animation: float 5s ease-in-out infinite;
+  text-shadow: 0 0 10px rgba(255, 184, 0, 0.7);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(-50%) translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-55%) translateX(5px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-50%) translateX(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-45%) translateX(-5px) rotate(-5deg);
+  }
+  100% {
+    transform: translateY(-50%) translateX(0) rotate(0deg);
+  }
 } 

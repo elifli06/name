@@ -16,21 +16,48 @@
     <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
     <title>Nomen Est Omen</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      .angel-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        opacity: 0.2;
+      }
+    </style>
   </head>
   <body>
     <noscript>Bu uygulamayı çalıştırmak için JavaScript'i etkinleştirmeniz gerekmektedir.</noscript>
-    <audio id="backgroundMusic" loop>
+    <img src="%PUBLIC_URL%/golden-angel.jpg" alt="Golden Angel" class="angel-image" />
+    <audio id="backgroundMusic" preload="auto">
       <source src="%PUBLIC_URL%/assets/mystical-background.mp3.mp3" type="audio/mp3">
     </audio>
     <div id="root"></div>
     <script>
-      document.body.addEventListener('click', function() {
+      // Sayfa tamamen yüklendikten sonra müziği başlat
+      document.addEventListener('DOMContentLoaded', function() {
         const audio = document.getElementById('backgroundMusic');
         if (audio) {
-          audio.volume = 0.2;
-          audio.play().catch(e => console.log('Müzik başlatma hatası:', e));
+          // Ses kullanıcı etkileşimiyle başlatılmalı
+          document.body.addEventListener('click', function() {
+            try {
+              audio.volume = 0.2;
+              const playPromise = audio.play();
+              
+              if (playPromise !== undefined) {
+                playPromise.catch(e => {
+                  console.log('Müzik başlatma hatası (normal bir durum olabilir):', e);
+                });
+              }
+            } catch (error) {
+              console.log('Ses ile ilgili bir hata oluştu:', error);
+            }
+          }, { once: true });
         }
-      }, { once: true });
+      });
     </script>
   </body>
 </html> 
