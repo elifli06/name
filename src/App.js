@@ -1031,17 +1031,17 @@ function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              className="fixed left-10 bottom-20 z-40 w-11/12 max-w-md"
+              className={`fixed ${isMobile ? 'bottom-5 right-20 max-w-[200px]' : 'left-10 bottom-20 max-w-md'} z-40 w-11/12`}
             >
-              <div className={`${currentTheme.primaryBg} ${currentTheme.border} border-2 rounded-2xl p-6 shadow-lg backdrop-blur-md`}>
-                <h3 className={`text-xl font-cinzel mb-4 ${currentTheme.accentText} text-center`}>
+              <div className={`${currentTheme.primaryBg} ${currentTheme.border} ${isMobile ? 'border' : 'border-2'} rounded-2xl ${isMobile ? 'p-3' : 'p-6'} shadow-lg backdrop-blur-md`}>
+                <h3 className={`${isMobile ? 'text-sm' : 'text-xl'} font-cinzel ${isMobile ? 'mb-2' : 'mb-4'} ${currentTheme.accentText} text-center`}>
                   {translations[language].horoscopePrompt}
                 </h3>
                 
-                <div className="flex justify-center space-x-4 mt-6">
+                <div className={`flex justify-center ${isMobile ? 'space-x-2 mt-2' : 'space-x-4 mt-6'}`}>
                   <motion.button
                     onClick={() => handleHoroscopePromptClose('yes')}
-                    className={`px-5 py-2 rounded-lg ${currentTheme.secondaryBg} ${currentTheme.accentText} ${currentTheme.border} border hover:bg-gold-default/10 backdrop-blur-sm font-cinzel transition-colors duration-300`}
+                    className={`${isMobile ? 'px-3 py-1 text-sm' : 'px-5 py-2'} rounded-lg ${currentTheme.secondaryBg} ${currentTheme.accentText} ${currentTheme.border} border hover:bg-gold-default/10 backdrop-blur-sm font-cinzel transition-colors duration-300`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onMouseEnter={playHoverSound}
@@ -1051,7 +1051,7 @@ function App() {
                   
                   <motion.button
                     onClick={() => handleHoroscopePromptClose('no')}
-                    className={`px-5 py-2 rounded-lg ${currentTheme.secondaryBg} ${currentTheme.text} ${currentTheme.border} border hover:bg-midnight-light/50 backdrop-blur-sm font-cinzel transition-colors duration-300`}
+                    className={`${isMobile ? 'px-3 py-1 text-sm' : 'px-5 py-2'} rounded-lg ${currentTheme.secondaryBg} ${currentTheme.text} ${currentTheme.border} border hover:bg-midnight-light/50 backdrop-blur-sm font-cinzel transition-colors duration-300`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onMouseEnter={playHoverSound}
