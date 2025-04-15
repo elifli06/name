@@ -1082,7 +1082,7 @@ function App() {
           <div className="container mx-auto px-4">
             <div className="flex justify-center items-center">
               <p className={`text-xs md:text-sm ${currentTheme.text}`}>
-                Created by @elif cerav 2025
+                Created by @elif cerav 2025 | Tüm hakları saklıdır
               </p>
             </div>
           </div>
