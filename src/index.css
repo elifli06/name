@@ -96,4 +96,42 @@ code {
   100% {
     transform: translateY(-50%) translateX(0) rotate(0deg);
   }
+}
+
+/* Mobil görünümde telif yazısı düzenlemesi */
+@media (max-width: 768px) {
+  .copyright-text-mobile {
+    display: none !important;
+  }
+  .footer-only-copyright {
+    font-size: 0.7rem !important;
+  }
+  .footer-mobile {
+    position: relative !important;
+    z-index: 50;
+  }
+  
+  /* Tüm sabit konumlandırılmış veya mutlak konumlandırılmış telif yazılarını gizle */
+  [class*="copyright"],
+  [class*="telif"],
+  [class*="haklar"] {
+    display: none !important;
+  }
+  
+  /* Sadece footer içindeki telif yazısına izin ver */
+  .footer-only-copyright {
+    display: block !important;
+  }
+}
+
+/* Ek olarak, tarayıcıda oluşturulan içeriği silmek için */
+div.flex.justify-center.items-center p.text-xs,
+div.flex.justify-center.items-center p.text-sm,
+div.flex.justify-center.items-center p.text-gold-light {
+  display: none !important;
+}
+
+/* Sadece footer içindeki telif yazısına izin ver */
+.footer-only-copyright {
+  display: block !important;
 } 
