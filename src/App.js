@@ -169,67 +169,80 @@ function App() {
           const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
           
           if (isMobileDevice) {
-            // Mobil cihazlar için çıkış değerlendirme modalını göster
-            setShowExitModal(true);
+            // Mobil cihazlar için daha nazik bir çıkış stratejisi
+            // Sayfa içeriğini gizleme
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s';
             
-            // Kullanıcı etkileşim göstermezse 5 saniye sonra basit çıkış yöntemini dene
             setTimeout(() => {
-              if (showExitModal) {
-                // Eğer modal hala açıksa, çıkış için alternatif yöntem dene
-                window.location.href = 'about:blank';
-                
-                setTimeout(() => {
-                  // Eğer sayfa hala açıksa
-                  if (document.visibilityState !== 'hidden') {
-                    setExitAnimation(false);
-                    setShowExitModal(false);
-                    alert(language === 'tr' 
-                      ? 'Uygulamadan çıkış yapmak için tarayıcınızın geri tuşunu kullanabilirsiniz.' 
-                      : 'You can use your browser\'s back button to exit the application.');
-                  }
-                }, 1500);
-              }
-            }, 5000);
+              // Beyaz sayfa göster ve animasyonu bitir
+              document.body.innerHTML = '';
+              document.body.style.background = '#fff';
+              document.body.style.opacity = '1';
+              
+              // Son mesajı göster
+              const finalMsg = document.createElement('div');
+              finalMsg.style.position = 'fixed';
+              finalMsg.style.top = '50%';
+              finalMsg.style.left = '50%';
+              finalMsg.style.transform = 'translate(-50%, -50%)';
+              finalMsg.style.fontFamily = 'Arial, sans-serif';
+              finalMsg.style.fontSize = '18px';
+              finalMsg.style.color = '#333';
+              finalMsg.style.textAlign = 'center';
+              finalMsg.innerHTML = language === 'tr' 
+                ? 'Uygulamadan çıkıldı. Sayfayı kapatabilirsiniz.<br>Tekrar görüşmek üzere!'
+                : 'Successfully exited from application. You can close this page.<br>See you again!';
+              document.body.appendChild(finalMsg);
+              
+              // Exit animasyonunu kaldır
+              setExitAnimation(false);
+            }, 1000);
           } else {
             // Masaüstü tarayıcılar için strateji
-            // Önce değerlendirme modalını göster
-            setShowExitModal(true);
+            // Daha nazik bir çıkış deneyimi
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 1s';
             
-            // 5 saniye sonra çıkış işlemi yap
             setTimeout(() => {
-              // Modal kapatılmadıysa çıkış yap
-              if (showExitModal) {
-                // Önce yeni window açarak kullanıcıya görünüm kapattır
-                const newWindow = window.open('about:blank', '_self');
-                if (newWindow) {
-                  newWindow.close();
-                }
-                
-                // Sonra normal window.close() dene
-                window.close();
-                
-                // Eğer hala kapatılamadıysa, gecikmeli şekilde eski haline dön
-                setTimeout(() => {
-                  if (document.visibilityState !== 'hidden') {
-                    setExitAnimation(false);
-                    setShowExitModal(false);
-                    alert(language === 'tr' 
-                      ? 'Tarayıcınız otomatik kapatmaya izin vermiyor. Lütfen pencereyi manuel olarak kapatın.' 
-                      : 'Your browser does not allow automatic closing. Please close the window manually.');
-                  }
-                }, 2000);
-              }
-            }, 5000);
+              // Beyaz sayfa göster ve animasyonu bitir
+              document.body.innerHTML = '';
+              document.body.style.background = '#fff';
+              document.body.style.opacity = '1';
+              
+              // Son mesajı göster
+              const finalMsg = document.createElement('div');
+              finalMsg.style.position = 'fixed';
+              finalMsg.style.top = '50%';
+              finalMsg.style.left = '50%';
+              finalMsg.style.transform = 'translate(-50%, -50%)';
+              finalMsg.style.fontFamily = 'Arial, sans-serif';
+              finalMsg.style.fontSize = '18px';
+              finalMsg.style.color = '#333';
+              finalMsg.style.textAlign = 'center';
+              finalMsg.innerHTML = language === 'tr' 
+                ? 'Uygulamadan çıkıldı. Sayfayı kapatabilirsiniz.<br>Tekrar görüşmek üzere!'
+                : 'Successfully exited from application. You can close this page.<br>See you again!';
+              document.body.appendChild(finalMsg);
+              
+              // Exit animasyonunu kaldır
+              setExitAnimation(false);
+            }, 1000);
+            
+            // window.close() tarayıcı engellediğinde hata göstermeden sessizce devam et
+            try {
+              setTimeout(() => window.close(), 1500);
+            } catch (e) {
+              // Hata var ama kullanıcıya göstermeye gerek yok
+              console.log("Çıkış engellendi, kullanıcı manuel kapatabilir");
+            }
           }
         } catch (error) {
           console.error("Çıkış yapılırken hata:", error);
           setExitAnimation(false);
-          setShowExitModal(false);
-          alert(language === 'tr' 
-            ? 'Çıkış yapılırken bir hata oluştu. Lütfen pencereyi manuel olarak kapatın.' 
-            : 'An error occurred while exiting. Please close the window manually.');
+          // Hata mesajını artık göstermeyelim
         }
-      }, 2000);
+      }, 4000);
       
       return () => clearTimeout(timer);
     }
