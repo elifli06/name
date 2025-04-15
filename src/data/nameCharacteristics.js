@@ -35,7 +35,7 @@ export const getNameInfo = (name, language = 'tr') => {
   if (!name || typeof name !== 'string') {
     return { 
       error: language === 'tr' ? 'Geçersiz isim' : 'Invalid name',
-      numerology: 0 
+      numerology: { number: 0, meaning: '' }
     };
   }
 
@@ -45,7 +45,7 @@ export const getNameInfo = (name, language = 'tr') => {
   if (normalizedName.length === 0) {
     return { 
       error: language === 'tr' ? 'İsim boş olamaz' : 'Name cannot be empty',
-      numerology: 0 
+      numerology: { number: 0, meaning: '' }
     };
   }
   
@@ -87,6 +87,11 @@ export const getNameInfo = (name, language = 'tr') => {
     nameSum = 1;
   }
   
+  // Numeroloji anlamını bul
+  const meaning = numerologyMeanings[nameSum] ? 
+    (language === 'tr' ? numerologyMeanings[nameSum].tr : numerologyMeanings[nameSum].en) : 
+    (language === 'tr' ? 'Bilinmeyen' : 'Unknown');
+  
   // Karakter özelliklerini belirle
   // Eğer harfin özelliği bulunamazsa, varsayılan bir değer kullan
   const firstLetterCharacteristic = nameCharacteristics[firstLetter] || 
@@ -98,7 +103,10 @@ export const getNameInfo = (name, language = 'tr') => {
   return {
     name: normalizedName,
     firstLetter: firstLetter,
-    numerology: nameSum,
+    numerology: {
+      number: nameSum,
+      meaning: meaning
+    },
     characteristics: firstLetterCharacteristic
   };
 };
