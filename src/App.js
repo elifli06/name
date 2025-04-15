@@ -168,85 +168,71 @@ function App() {
           // Mobil cihaz kontrolü
           const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
           
-          if (isMobileDevice) {
-            // Mobil cihazlar için daha nazik bir çıkış stratejisi
-            // Sayfa içeriğini gizleme
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 1s';
-            
-            setTimeout(() => {
-              // Beyaz sayfa göster ve animasyonu bitir
-              document.body.innerHTML = '';
-              document.body.style.background = '#fff';
-              document.body.style.opacity = '1';
-              
-              // Son mesajı göster
-              const finalMsg = document.createElement('div');
-              finalMsg.style.position = 'fixed';
-              finalMsg.style.top = '50%';
-              finalMsg.style.left = '50%';
-              finalMsg.style.transform = 'translate(-50%, -50%)';
-              finalMsg.style.fontFamily = 'Arial, sans-serif';
-              finalMsg.style.fontSize = '18px';
-              finalMsg.style.color = '#333';
-              finalMsg.style.textAlign = 'center';
-              finalMsg.innerHTML = language === 'tr' 
-                ? 'Uygulamadan çıkıldı. Sayfayı kapatabilirsiniz.<br>Tekrar görüşmek üzere!'
-                : 'Successfully exited from application. You can close this page.<br>See you again!';
-              document.body.appendChild(finalMsg);
-              
-              // Exit animasyonunu kaldır
-              setExitAnimation(false);
-            }, 1000);
-          } else {
-            // Masaüstü tarayıcılar için strateji
-            // Daha nazik bir çıkış deneyimi
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 1s';
-            
-            setTimeout(() => {
-              // Beyaz sayfa göster ve animasyonu bitir
-              document.body.innerHTML = '';
-              document.body.style.background = '#fff';
-              document.body.style.opacity = '1';
-              
-              // Son mesajı göster
-              const finalMsg = document.createElement('div');
-              finalMsg.style.position = 'fixed';
-              finalMsg.style.top = '50%';
-              finalMsg.style.left = '50%';
-              finalMsg.style.transform = 'translate(-50%, -50%)';
-              finalMsg.style.fontFamily = 'Arial, sans-serif';
-              finalMsg.style.fontSize = '18px';
-              finalMsg.style.color = '#333';
-              finalMsg.style.textAlign = 'center';
-              finalMsg.innerHTML = language === 'tr' 
-                ? 'Uygulamadan çıkıldı. Sayfayı kapatabilirsiniz.<br>Tekrar görüşmek üzere!'
-                : 'Successfully exited from application. You can close this page.<br>See you again!';
-              document.body.appendChild(finalMsg);
-              
-              // Exit animasyonunu kaldır
-              setExitAnimation(false);
-            }, 1000);
-            
-            // window.close() tarayıcı engellediğinde hata göstermeden sessizce devam et
+          // Her cihaz için aynı çıkış stratejisini kullan, ayrım yapma
+          // Sayfa içeriğini gizleme
+          document.body.style.opacity = '0';
+          document.body.style.transition = 'opacity 1s';
+          
+          setTimeout(() => {
             try {
-              setTimeout(() => window.close(), 1500);
-            } catch (e) {
-              // Hata var ama kullanıcıya göstermeye gerek yok
-              console.log("Çıkış engellendi, kullanıcı manuel kapatabilir");
+              // Beyaz sayfa göster ve animasyonu bitir
+              document.body.innerHTML = '';
+              document.body.style.background = '#fff';
+              document.body.style.opacity = '1';
+              
+              // Son mesajı göster
+              const finalMsg = document.createElement('div');
+              finalMsg.style.position = 'fixed';
+              finalMsg.style.top = '50%';
+              finalMsg.style.left = '50%';
+              finalMsg.style.transform = 'translate(-50%, -50%)';
+              finalMsg.style.fontFamily = 'Arial, sans-serif';
+              finalMsg.style.fontSize = '18px';
+              finalMsg.style.color = '#333';
+              finalMsg.style.textAlign = 'center';
+              finalMsg.innerHTML = language === 'tr' 
+                ? 'Uygulamadan çıkıldı. Sayfayı kapatabilirsiniz.<br>Tekrar görüşmek üzere!'
+                : 'Successfully exited from application. You can close this page.<br>See you again!';
+              document.body.appendChild(finalMsg);
+              
+              // Yeniden yükleme butonu ekle
+              const reloadBtn = document.createElement('button');
+              reloadBtn.style.marginTop = '20px';
+              reloadBtn.style.padding = '10px 20px';
+              reloadBtn.style.border = '1px solid #ccc';
+              reloadBtn.style.borderRadius = '5px';
+              reloadBtn.style.backgroundColor = '#f5f5f5';
+              reloadBtn.style.cursor = 'pointer';
+              reloadBtn.innerHTML = language === 'tr' ? 'Uygulamaya Geri Dön' : 'Return to Application';
+              reloadBtn.onclick = function() {
+                window.location.reload();
+              };
+              
+              // Mesajın altına butonu ekle
+              finalMsg.appendChild(document.createElement('br'));
+              finalMsg.appendChild(document.createElement('br'));
+              finalMsg.appendChild(reloadBtn);
+            } catch (innerError) {
+              console.error("Çıkış sayfası gösterme hatası:", innerError);
+              // Hata durumunda sayfayı yeniden yükle
+              window.location.reload();
             }
-          }
+            
+            // Exit animasyonunu kaldır
+            setExitAnimation(false);
+          }, 1000);
         } catch (error) {
           console.error("Çıkış yapılırken hata:", error);
           setExitAnimation(false);
-          // Hata mesajını artık göstermeyelim
+          alert(language === 'tr' 
+            ? 'Çıkış sırasında bir hata oluştu. Sayfayı manuel olarak kapatabilirsiniz.' 
+            : 'An error occurred during exit. You can close the page manually.');
         }
       }, 4000);
       
       return () => clearTimeout(timer);
     }
-  }, [exitAnimation, language, showExitModal]);
+  }, [exitAnimation, language]);
 
   // Ses çalmak için fonksiyonlar
   const playHoverSound = () => {
@@ -441,7 +427,27 @@ function App() {
 
   const handleExit = () => {
     playClickSound(); // Çıkış butonuna tıklandığında ses çal
-    setExitAnimation(true);
+    
+    // Mobil cihazlar için PDF indirme ve sosyal medya butonlarını göster
+    if (isMobile && result) {
+      // Sonuç varsa kullanıcıya mobil butonları göster
+      alert(language === 'tr' 
+        ? 'Çıkmadan önce, sonuçlarınızı indirmek veya paylaşmak isteyebilirsiniz. Devam etmek için TAMAM\'a tıklayın.' 
+        : 'Before leaving, you may want to download or share your results. Click OK to continue.');
+      
+      // Sayfayı sonuç bölümüne scroll et
+      if (resultRef && resultRef.current) {
+        resultRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // 2 saniye sonra çıkış animasyonunu başlat
+      setTimeout(() => {
+        setExitAnimation(true);
+      }, 2000);
+    } else {
+      // Web için normal çıkış
+      setExitAnimation(true);
+    }
   };
 
   const handleExitAfterRating = () => {
@@ -1017,7 +1023,7 @@ function App() {
           </motion.div>
         )}
         
-        {/* Burç yorumu prompt'u */}
+        {/* Burç yorumu prompt'u - Sol alta yerleştirildi */}
         <AnimatePresence>
           {showHoroscopePrompt && !showHoroscope && (
             <motion.div
@@ -1025,7 +1031,7 @@ function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              className="fixed left-1/4 transform -translate-x-1/2 top-1/2 -translate-y-1/2 z-40 w-11/12 max-w-md"
+              className="fixed left-10 bottom-20 z-40 w-11/12 max-w-md"
             >
               <div className={`${currentTheme.primaryBg} ${currentTheme.border} border-2 rounded-2xl p-6 shadow-lg backdrop-blur-md`}>
                 <h3 className={`text-xl font-cinzel mb-4 ${currentTheme.accentText} text-center`}>
@@ -1071,7 +1077,7 @@ function App() {
           )}
         </AnimatePresence>
 
-        {/* Footer bilgisi - Düzeltilmiş pozisyon ve stil */}
+        {/* Footer bilgisi - Sadece footer alanında telif bilgisi */}
         <div className="w-full py-3 border-t border-gold-default/20 mt-12">
           <div className="container mx-auto px-4">
             <div className="flex justify-center items-center">
