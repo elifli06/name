@@ -1077,20 +1077,19 @@ function App() {
           )}
         </AnimatePresence>
 
-        {/* Footer bilgisi - Sadece footer alanında telif bilgisi */}
-        <div className="w-full py-3 border-t border-gold-default/20 mt-12">
+        {/* Melek Emojisi */}
+        <div className="floating-angel">👼</div>
+        
+        {/* Footer bilgisi - Telif çizgisi olmadan */}
+        <div className={`w-full py-3 mt-12 ${isMobile ? 'footer-mobile' : ''}`}>
           <div className="container mx-auto px-4">
             <div className="flex justify-center items-center">
-              <p className={`text-xs md:text-sm ${currentTheme.text}`}>
-                {!isMobile && 'Created by @elif cerav 2025 | Tüm hakları saklıdır'}
-                {isMobile && 'Created by @elif cerav 2025'}
+              <p className={`text-xs md:text-sm ${currentTheme.text} footer-only-copyright`}>
+                Created by @elif cerav 2025{!isMobile && ' | Tüm hakları saklıdır'}
               </p>
             </div>
           </div>
         </div>
-
-        {/* Melek Emojisi */}
-        <div className="floating-angel">👼</div>
       </div>
     </div>
   );

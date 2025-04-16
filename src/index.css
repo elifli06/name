@@ -131,7 +131,22 @@ div.flex.justify-center.items-center p.text-gold-light {
   display: none !important;
 }
 
-/* Sadece footer içindeki telif yazısına izin ver */
+/* Ortadaki beyaz çizgiyi kaldır */
+hr, 
+.hr, 
+*[class*="divider"], 
+*[class*="border-t"], 
+*[class*="border-b"], 
+*[class*="border-top"], 
+*[class*="border-bottom"] {
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Footer'daki telif yazısını göster */
 .footer-only-copyright {
   display: block !important;
 } 
