@@ -112,22 +112,17 @@ code {
   }
   
   /* Tüm sabit konumlandırılmış veya mutlak konumlandırılmış telif yazılarını gizle */
-  [class*="copyright"],
-  [class*="telif"],
-  [class*="haklar"] {
+  [class*="copyright"]:not(.footer-only-copyright),
+  [class*="telif"]:not(.footer-only-copyright),
+  [class*="haklar"]:not(.footer-only-copyright) {
     display: none !important;
-  }
-  
-  /* Sadece footer içindeki telif yazısına izin ver */
-  .footer-only-copyright {
-    display: block !important;
   }
 }
 
-/* Ek olarak, tarayıcıda oluşturulan içeriği silmek için */
-div.flex.justify-center.items-center p.text-xs,
-div.flex.justify-center.items-center p.text-sm,
-div.flex.justify-center.items-center p.text-gold-light {
+/* Ek olarak, tarayıcıda oluşturulan içeriği silmek için, ama footer-only-copyright hariç */
+div.flex.justify-center.items-center p.text-xs:not(.footer-only-copyright),
+div.flex.justify-center.items-center p.text-sm:not(.footer-only-copyright),
+div.flex.justify-center.items-center p.text-gold-light:not(.footer-only-copyright) {
   display: none !important;
 }
 
@@ -146,7 +141,10 @@ hr,
   background: transparent !important;
 }
 
-/* Footer'daki telif yazısını göster */
+/* Footer'daki telif yazısını her durumda göster */
 .footer-only-copyright {
   display: block !important;
+  color: currentColor !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 } 

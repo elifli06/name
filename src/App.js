@@ -1084,7 +1084,7 @@ function App() {
         <div className={`w-full py-3 mt-12 ${isMobile ? 'footer-mobile' : ''}`}>
           <div className="container mx-auto px-4">
             <div className="flex justify-center items-center">
-              <p className={`text-xs md:text-sm ${currentTheme.text} footer-only-copyright`}>
+              <p className={`text-xs md:text-sm ${darkTheme ? 'text-gold-light' : 'text-amber-800'} footer-only-copyright`} style={{opacity: 1, visibility: 'visible'}}>
                 Created by @elif cerav 2025{!isMobile && ' | Tüm hakları saklıdır'}
               </p>
             </div>
