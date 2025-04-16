@@ -22,8 +22,14 @@ const DailyHoroscope = ({ onClose, language, theme, isMobile, position = "center
     borderAccent: 'border-gold-default/40'
   };
 
-  // Position sınıfını belirle
+  // Position sınıfını belirle - Mobil cihazlar için konumlandırmayı iyileştir
   const getPositionClass = () => {
+    // Mobil cihazlarda merkeze konumlandır
+    if (isMobile) {
+      return "left-1/2 -translate-x-1/2";
+    }
+    
+    // Masaüstü/tablet için eski konumlandırma
     switch (position) {
       case "left-center":
         return "left-1/4 -translate-x-1/2";
@@ -152,16 +158,20 @@ const DailyHoroscope = ({ onClose, language, theme, isMobile, position = "center
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.3 }}
-      className={`fixed ${getPositionClass()} top-1/2 -translate-y-1/2 z-50 w-11/12 max-w-md`}
+      className={`fixed ${getPositionClass()} ${isMobile ? 'top-1/2 bottom-auto' : 'top-1/2'} -translate-y-1/2 z-50 w-11/12 max-w-md`}
+      style={{ maxHeight: isMobile ? '90vh' : '80vh' }}
     >
-      <div className={`${currentTheme.primaryBg} ${currentTheme.border} border-2 rounded-2xl p-6 shadow-lg backdrop-blur-sm max-h-[80vh] overflow-y-auto`}>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className={`text-2xl font-cinzel ${currentTheme.accentText}`}>
+      <div className={`${currentTheme.primaryBg} ${currentTheme.border} ${isMobile ? 'border' : 'border-2'} rounded-2xl ${isMobile ? 'p-4' : 'p-6'} shadow-lg backdrop-blur-sm overflow-y-auto`} 
+           style={{ maxHeight: isMobile ? '90vh' : '80vh' }}>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className={`${isMobile ? 'text-xl' : 'text-2xl'} font-cinzel ${currentTheme.accentText}`}>
             {t.title}
           </h2>
           <button 
             onClick={onClose}
-            className={`${currentTheme.text} hover:${currentTheme.accentText} transition-colors`}
+            className={`${currentTheme.text} hover:${currentTheme.accentText} transition-colors touch-manipulate z-50`}
+            aria-label={t.close}
+            style={{ touchAction: 'manipulation' }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -169,18 +179,19 @@ const DailyHoroscope = ({ onClose, language, theme, isMobile, position = "center
           </button>
         </div>
 
-        <div className="mb-6">
-          <h3 className={`text-lg font-cinzel ${currentTheme.text} mb-3`}>{t.selectZodiac}</h3>
-          <div className="grid grid-cols-3 gap-2">
+        <div className={`mb-${isMobile ? '4' : '6'}`}>
+          <h3 className={`${isMobile ? 'text-base' : 'text-lg'} font-cinzel ${currentTheme.text} mb-3`}>{t.selectZodiac}</h3>
+          <div className={`grid ${isMobile ? 'grid-cols-4 gap-1' : 'grid-cols-3 gap-2'}`}>
             {zodiacs[language].map((zodiac) => (
               <button
                 key={zodiac.id}
                 onClick={() => setSelectedZodiac(zodiac.id)}
-                className={`p-2 rounded-lg transition-all ${
+                className={`${isMobile ? 'p-1.5 text-xs' : 'p-2 text-sm'} rounded-lg transition-all ${
                   selectedZodiac === zodiac.id
                     ? `${currentTheme.secondaryBg} ${currentTheme.accentText} font-bold ${currentTheme.border}`
                     : `${currentTheme.inputBg} ${currentTheme.text} ${currentTheme.lightBorder} hover:${currentTheme.border}`
-                } border text-sm`}
+                } border touch-manipulate`}
+                style={{ touchAction: 'manipulation' }}
               >
                 {zodiac.name}
               </button>
@@ -200,32 +211,45 @@ const DailyHoroscope = ({ onClose, language, theme, isMobile, position = "center
             <p className="text-red-400">{error}</p>
           </div>
         ) : horoscopeData ? (
-          <div className={`${currentTheme.secondaryBg} ${currentTheme.border} border rounded-xl p-4`}>
-            <div className="mb-4">
-              <div className={`${currentTheme.text} text-sm`}>{t.date} {horoscopeData.date}</div>
-              <h3 className={`text-xl font-cinzel ${currentTheme.accentText} mt-2`}>{horoscopeData.sign}</h3>
+          <div className={`${currentTheme.secondaryBg} ${currentTheme.border} border rounded-xl ${isMobile ? 'p-3' : 'p-4'}`}>
+            <div className="mb-3">
+              <div className={`${currentTheme.text} ${isMobile ? 'text-xs' : 'text-sm'}`}>{t.date} {horoscopeData.date}</div>
+              <h3 className={`${isMobile ? 'text-lg' : 'text-xl'} font-cinzel ${currentTheme.accentText} mt-1`}>{horoscopeData.sign}</h3>
             </div>
             
-            <div className="space-y-4">
+            <div className={`space-y-${isMobile ? '3' : '4'}`}>
               <div>
-                <h4 className={`${currentTheme.accentText} font-cinzel mb-1`}>{t.general}</h4>
-                <p className={`${currentTheme.text}`}>{horoscopeData.text.general}</p>
+                <h4 className={`${currentTheme.accentText} font-cinzel ${isMobile ? 'text-sm' : ''} mb-1`}>{t.general}</h4>
+                <p className={`${currentTheme.text} ${isMobile ? 'text-sm' : ''}`}>{horoscopeData.text.general}</p>
               </div>
               
               <div>
-                <h4 className={`${currentTheme.accentText} font-cinzel mb-1`}>{t.love}</h4>
-                <p className={`${currentTheme.text}`}>{horoscopeData.text.love}</p>
+                <h4 className={`${currentTheme.accentText} font-cinzel ${isMobile ? 'text-sm' : ''} mb-1`}>{t.love}</h4>
+                <p className={`${currentTheme.text} ${isMobile ? 'text-sm' : ''}`}>{horoscopeData.text.love}</p>
               </div>
               
               <div>
-                <h4 className={`${currentTheme.accentText} font-cinzel mb-1`}>{t.career}</h4>
-                <p className={`${currentTheme.text}`}>{horoscopeData.text.career}</p>
+                <h4 className={`${currentTheme.accentText} font-cinzel ${isMobile ? 'text-sm' : ''} mb-1`}>{t.career}</h4>
+                <p className={`${currentTheme.text} ${isMobile ? 'text-sm' : ''}`}>{horoscopeData.text.career}</p>
               </div>
               
               <div>
-                <h4 className={`${currentTheme.accentText} font-cinzel mb-1`}>{t.health}</h4>
-                <p className={`${currentTheme.text}`}>{horoscopeData.text.health}</p>
+                <h4 className={`${currentTheme.accentText} font-cinzel ${isMobile ? 'text-sm' : ''} mb-1`}>{t.health}</h4>
+                <p className={`${currentTheme.text} ${isMobile ? 'text-sm' : ''}`}>{horoscopeData.text.health}</p>
               </div>
+
+              {/* Mobil cihazlarda kapatma butonu ekliyoruz - dokunmatik cihazların erişimi için önemli */}
+              {isMobile && (
+                <div className="pt-2 text-center">
+                  <button
+                    onClick={onClose}
+                    className={`${currentTheme.inputBg} ${currentTheme.border} border px-6 py-2 rounded-lg ${currentTheme.text} text-center touch-manipulate`}
+                    style={{ touchAction: 'manipulation' }}
+                  >
+                    {t.close}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         ) : null}
