@@ -753,6 +753,15 @@ function App() {
                 transition={{ delay: 1.2, duration: 1 }}
                 className="mt-8 text-center"
               >
+                <p className="text-gold-light text-lg mb-2">
+                  {searchTerm && (
+                    <span className="text-gold-default font-bold">
+                      {language === 'tr' 
+                        ? `${searchTerm}, sen çok değerlisin!` 
+                        : `${searchTerm}, you are very valuable!`}
+                    </span>
+                  )}
+                </p>
                 <p className="text-gold-light text-sm italic">
                   {language === 'tr' 
                     ? "Vaktiniz için teşekkür ederiz, sevgi ve ışıkla yolunuz aydınlık olsun."
