@@ -103,26 +103,46 @@ code {
   .copyright-text-mobile {
     display: none !important;
   }
-  .footer-only-copyright {
-    font-size: 0.7rem !important;
-  }
   .footer-mobile {
     position: relative !important;
     z-index: 50;
   }
   
+  /* Web için olan telif yazısını mobilde gizle */
+  .footer-only-copyright-web {
+    display: none !important;
+  }
+  
+  /* Mobil için olan telif yazısını göster */
+  .footer-only-copyright-mobile {
+    font-size: 0.7rem !important;
+    display: block !important;
+  }
+  
   /* Tüm sabit konumlandırılmış veya mutlak konumlandırılmış telif yazılarını gizle */
-  [class*="copyright"]:not(.footer-only-copyright),
-  [class*="telif"]:not(.footer-only-copyright),
-  [class*="haklar"]:not(.footer-only-copyright) {
+  [class*="copyright"]:not(.footer-only-copyright-mobile),
+  [class*="telif"]:not(.footer-only-copyright-mobile),
+  [class*="haklar"]:not(.footer-only-copyright-mobile) {
     display: none !important;
   }
 }
 
-/* Ek olarak, tarayıcıda oluşturulan içeriği silmek için, ama footer-only-copyright hariç */
-div.flex.justify-center.items-center p.text-xs:not(.footer-only-copyright),
-div.flex.justify-center.items-center p.text-sm:not(.footer-only-copyright),
-div.flex.justify-center.items-center p.text-gold-light:not(.footer-only-copyright) {
+/* Masaüstü görünümünde mobil telifi gizle */
+@media (min-width: 769px) {
+  .footer-only-copyright-mobile {
+    display: none !important;
+  }
+  
+  /* Web için olan telif yazısını göster */
+  .footer-only-copyright-web {
+    display: block !important;
+  }
+}
+
+/* Ek olarak, tarayıcıda oluşturulan içeriği silmek için */
+div.flex.justify-center.items-center p.text-xs:not(.footer-only-copyright-mobile):not(.footer-only-copyright-web),
+div.flex.justify-center.items-center p.text-sm:not(.footer-only-copyright-mobile):not(.footer-only-copyright-web),
+div.flex.justify-center.items-center p.text-gold-light:not(.footer-only-copyright-mobile):not(.footer-only-copyright-web) {
   display: none !important;
 }
 
@@ -141,10 +161,13 @@ hr,
   background: transparent !important;
 }
 
-/* Footer'daki telif yazısını her durumda göster */
-.footer-only-copyright {
-  display: block !important;
+/* Footer'daki telif yazılarını her durumda göster */
+.footer-only-copyright-web,
+.footer-only-copyright-mobile {
   color: currentColor !important;
   opacity: 1 !important;
   visibility: visible !important;
+  position: relative !important;
+  z-index: 50 !important;
+} 
 } 

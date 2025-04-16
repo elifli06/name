@@ -598,9 +598,12 @@ function App() {
   const handleHoroscopeClose = () => {
     try {
       setShowHoroscope(false);
+      // Prompt'u da gizleyelim
+      setShowHoroscopePrompt(false);
     } catch (error) {
       console.error("handleHoroscopeClose fonksiyonunda hata:", error);
       setShowHoroscope(false);
+      setShowHoroscopePrompt(false);
     }
   };
 
@@ -742,6 +745,23 @@ function App() {
               >
                 {searchTerm ? `${searchTerm}, ${translations[language].goodbye}` : translations[language].goodbye}
               </motion.p>
+
+              {/* Veda notu - Teşekkür mesajı */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2, duration: 1 }}
+                className="mt-8 text-center"
+              >
+                <p className="text-gold-light text-sm italic">
+                  {language === 'tr' 
+                    ? "Vaktiniz için teşekkür ederiz, sevgi ve ışıkla yolunuz aydınlık olsun."
+                    : "Thank you for your time, may your path be filled with love and light."}
+                </p>
+                <p className="text-gold-light text-sm mt-3">
+                  ★ {language === 'tr' ? "Yıldızlar daima sizinle olsun" : "May the stars always be with you"} ★
+                </p>
+              </motion.div>
             </div>
           </motion.div>
         )}
@@ -1080,16 +1100,30 @@ function App() {
         {/* Melek Emojisi */}
         <div className="floating-angel">👼</div>
         
-        {/* Footer bilgisi - Telif çizgisi olmadan */}
-        <div className={`w-full py-3 mt-12 ${isMobile ? 'footer-mobile' : ''}`}>
-          <div className="container mx-auto px-4">
-            <div className="flex justify-center items-center">
-              <p className={`text-xs md:text-sm ${darkTheme ? 'text-gold-light' : 'text-amber-800'} footer-only-copyright`} style={{opacity: 1, visibility: 'visible'}}>
-                Created by @elif cerav 2025{!isMobile && ' | Tüm hakları saklıdır'}
-              </p>
+        {/* Footer bilgisi - Web ve Mobil için ayrı yapılar */}
+        {isMobile ? (
+          // Mobil cihazlar için footer
+          <div className="w-full py-3 mt-12 footer-mobile">
+            <div className="container mx-auto px-4">
+              <div className="flex justify-center items-center">
+                <p className="text-xs text-gold-light footer-only-copyright-mobile" style={{opacity: 1, visibility: 'visible'}}>
+                  Created by @elif cerav 2025
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          // Web için footer
+          <div className="w-full py-3 mt-12">
+            <div className="container mx-auto px-4">
+              <div className="flex justify-center items-center">
+                <p className="text-sm text-gold-light footer-only-copyright-web" style={{opacity: 1, visibility: 'visible'}}>
+                  Created by @elif cerav 2025 | Tüm hakları saklıdır
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
