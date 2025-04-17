@@ -597,13 +597,12 @@ function App() {
   // Burç yorumu modalini kapatmak için
   const handleHoroscopeClose = () => {
     try {
+      playClickSound();
+      // Burç yorumu modalini kapat ve uygulamaya dön
       setShowHoroscope(false);
-      // Prompt'u da gizleyelim
-      setShowHoroscopePrompt(false);
     } catch (error) {
       console.error("handleHoroscopeClose fonksiyonunda hata:", error);
       setShowHoroscope(false);
-      setShowHoroscopePrompt(false);
     }
   };
 
@@ -1052,38 +1051,34 @@ function App() {
           </motion.div>
         )}
         
-        {/* Burç yorumu prompt'u - Sol alta yerleştirildi */}
+        {/* Horoscope sorusu */}
         <AnimatePresence>
           {showHoroscopePrompt && !showHoroscope && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              className={`fixed ${isMobile ? 'bottom-5 right-20 max-w-[200px]' : 'left-10 bottom-20 max-w-md'} z-40 w-11/12`}
+              className={`fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-11/12 max-w-md`}
             >
-              <div className={`${currentTheme.primaryBg} ${currentTheme.border} ${isMobile ? 'border' : 'border-2'} rounded-2xl ${isMobile ? 'p-3' : 'p-6'} shadow-lg backdrop-blur-md`}>
-                <h3 className={`${isMobile ? 'text-sm' : 'text-xl'} font-cinzel ${isMobile ? 'mb-2' : 'mb-4'} ${currentTheme.accentText} text-center`}>
+              <div className={`${currentTheme.section} ${currentTheme.border} border rounded-xl p-6 shadow-lg backdrop-blur-md`}>
+                <h3 className={`text-xl font-cinzel ${currentTheme.accentText} mb-4 text-center`}>
                   {translations[language].horoscopePrompt}
                 </h3>
-                
-                <div className={`flex justify-center ${isMobile ? 'space-x-2 mt-2' : 'space-x-4 mt-6'}`}>
+                <div className="flex justify-around mt-6">
                   <motion.button
                     onClick={() => handleHoroscopePromptClose('yes')}
-                    className={`${isMobile ? 'px-3 py-1 text-sm' : 'px-5 py-2'} rounded-lg ${currentTheme.secondaryBg} ${currentTheme.accentText} ${currentTheme.border} border hover:bg-gold-default/10 backdrop-blur-sm font-cinzel transition-colors duration-300`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onMouseEnter={playHoverSound}
+                    className={`px-5 py-2 rounded-lg ${currentTheme.secondaryBg} ${currentTheme.accentText} ${currentTheme.border} border backdrop-blur-sm font-cinzel transition-colors duration-300`}
                   >
                     {translations[language].yes}
                   </motion.button>
-                  
                   <motion.button
                     onClick={() => handleHoroscopePromptClose('no')}
-                    className={`${isMobile ? 'px-3 py-1 text-sm' : 'px-5 py-2'} rounded-lg ${currentTheme.secondaryBg} ${currentTheme.text} ${currentTheme.border} border hover:bg-midnight-light/50 backdrop-blur-sm font-cinzel transition-colors duration-300`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onMouseEnter={playHoverSound}
+                    className={`px-5 py-2 rounded-lg ${currentTheme.inputBg} ${currentTheme.text} ${currentTheme.borderLight} border backdrop-blur-sm transition-colors duration-300`}
                   >
                     {translations[language].no}
                   </motion.button>
@@ -1098,10 +1093,9 @@ function App() {
           {showHoroscope && (
             <DailyHoroscope 
               onClose={handleHoroscopeClose} 
-              language={language}
-              theme={currentTheme}
+              language={language} 
+              theme={currentTheme} 
               isMobile={isMobile}
-              position="left-center"
             />
           )}
         </AnimatePresence>

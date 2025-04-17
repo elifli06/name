@@ -86,7 +86,9 @@ const DailyHoroscope = ({ onClose, language, theme, isMobile, position = "center
       love: "Aşk",
       career: "Kariyer",
       health: "Sağlık",
-      dailyUpdate: "Yorumlar her gün güncellenir"
+      dailyUpdate: "Yorumlar her gün güncellenir",
+      returnToApp: "Uygulamaya Dön",
+      exit: "Çıkış Yap"
     },
     en: {
       title: "Daily Horoscope",
@@ -100,7 +102,9 @@ const DailyHoroscope = ({ onClose, language, theme, isMobile, position = "center
       love: "Love",
       career: "Career",
       health: "Health",
-      dailyUpdate: "Horoscopes updated daily"
+      dailyUpdate: "Horoscopes updated daily",
+      returnToApp: "Return to App",
+      exit: "Exit"
     }
   };
 
@@ -153,6 +157,12 @@ const DailyHoroscope = ({ onClose, language, theme, isMobile, position = "center
     if (typeof onClose === 'function') {
       onClose();
     }
+  };
+
+  // Çıkış yap fonksiyonu - Sayfa yenileme ile simüle edilir
+  const handleExit = () => {
+    // Sayfayı yenile - Uygulamadan çıkma işlemini simüle etmek için 
+    window.location.reload();
   };
 
   // Seçilen burç değiştiğinde yorumu getir
@@ -251,21 +261,29 @@ const DailyHoroscope = ({ onClose, language, theme, isMobile, position = "center
                 </div>
               </div>
 
-              {/* Web için günlük güncellenir notu */}
-              <div className="mt-6 text-center">
-                <p className={`${currentTheme.text} text-xs italic`}>
-                  {t.dailyUpdate}
-                </p>
+              <div className="text-xs text-center mt-4 text-gold-light/70">
+                {t.dailyUpdate}
               </div>
-
-              {/* Web için alt kısmında kapatma butonu */}
-              <div className="mt-4 flex justify-center">
-                <button
+              
+              {/* Kontrol butonları */}
+              <div className="flex justify-between mt-6">
+                <motion.button
                   onClick={handleClose}
-                  className={`${currentTheme.secondaryBg} ${currentTheme.accentText} ${currentTheme.border} border px-6 py-2 rounded-lg font-cinzel hover:bg-gold-default/10 transition-all duration-300`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`px-4 py-2 rounded-lg ${currentTheme.inputBg} ${currentTheme.text} ${currentTheme.border} border backdrop-blur-sm transition-colors duration-300 text-sm`}
                 >
-                  {t.close}
-                </button>
+                  {t.returnToApp}
+                </motion.button>
+                
+                <motion.button
+                  onClick={handleExit}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`px-4 py-2 rounded-lg ${currentTheme.secondaryBg} ${currentTheme.accentText} ${currentTheme.border} border backdrop-blur-sm transition-colors duration-300 text-sm`}
+                >
+                  {t.exit}
+                </motion.button>
               </div>
             </div>
           ) : null}
