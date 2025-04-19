@@ -1,6 +1,6 @@
 {
-  "short_name": "Nomen Est Omen",
-  "name": "Nomen Est Omen - İsim Analizi Uygulaması",
+  "short_name": "NomenEstOmen",
+  "name": "Nomen Est Omen - İsim ve Karakter Analizi",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,19 +8,19 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
+      "src": "favicon.ico",
+      "type": "image/x-icon",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "favicon.ico",
+      "type": "image/x-icon",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#0A0B1A",
+  "theme_color": "#000000",
   "background_color": "#0A0B1A",
   "orientation": "portrait",
   "description": "İsim analizi uygulaması",

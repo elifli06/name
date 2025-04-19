@@ -7,23 +7,34 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'cinzel': ['Cinzel', 'serif'],
-        'cormorant': ['Cormorant Garamond', 'serif'],
+        'mystical': ['Cinzel', 'serif'],
+        'serif': ['Cormorant Garamond', 'serif'],
       },
       colors: {
         'midnight': {
           DEFAULT: '#0A0B1A',
-          light: '#1A1B2A',
+          light: '#141C2F',
+          dark: '#080914',
         },
         'gold': {
-          DEFAULT: '#FFB800',
-          light: '#FFD700',
+          DEFAULT: '#FFD700',
+          light: '#FFF2CC',
+          dark: '#B8860B',
         },
+        'gold-default': '#FFD700',
+        'gold-light': '#FFF2CC',
+        'gold-dark': '#B8860B',
+        'midnight-default': '#0A0B1A',
+        'midnight-light': '#141C2F',
+        'midnight-dark': '#080914',
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'flicker': 'flicker 1.5s ease-in-out infinite alternate'
+        'glow': 'glow 2s ease-in-out infinite',
+        'flicker': 'flicker 1.5s ease-in-out infinite alternate',
+        'floating': 'float 5s ease-in-out infinite',
+        'fadeIn': 'fadeIn 0.5s ease-in-out',
+        'glowPulse': 'glowPulse 3s infinite',
       },
       keyframes: {
         glow: {
