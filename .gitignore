@@ -1,14 +1,20 @@
-git commit -m "remove large ignored files from tracking"  #   B u i l d   d o s y a l a r \ n b u i l d / \ n \ n #   G e l i s t i r m e   n o t l a r \ n d e v - n o t e s / \ n \ n #   O z e l   v e r i   d o s y a l a r \ n s r c / d a t a / c u s t o m / 
- 
- n o d e _ m o d u l e s 
- 
- n o d e _ m o d u l e s 
- 
- n o d e _ m o d u l e s 
- 
- 
-.vercel
+# Build dosyalar
+build/
+
+# Geliştirme notlar
+dev-notes/
+
+# Özel veri dosyalar
+src/data/custom/
+
+# Node.js modülleri
 node_modules/
+
+# Vercel deployment klasörü
+.vercel/
+
+# Cache dosyaları
 .cache/
+
+# Ortam değişkenleri
 .env
-node_modules
